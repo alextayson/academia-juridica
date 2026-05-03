@@ -1,0 +1,54 @@
+/* ==================== ADDITIONAL MODERN STYLES ==================== */
+
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 14px;
+}
+
+/* Toast Animations */
+@keyframes slideIn {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+}
+
+/* Responsive Grid Improvements */
+@media (max-width: 1024px) {
+    .course-grid,
+    #coursesGrid,
+    #continueGrid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .course-grid,
+    #coursesGrid,
+    #continueGrid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .hero-title {
+        font-size: 32px !important;
+    }
+
+    .hero-subtitle {
+        font-size: 16px !important;
+    }
+}

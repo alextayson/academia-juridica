@@ -1,0 +1,167 @@
+{
+  "courses": [
+    {
+      "id": "trabalhista-avancado",
+      "title": "Direito Trabalhista Avançado",
+      "description": "Reforma trabalhista e suas implicações práticas",
+      "category": "trabalhista",
+      "level": "avancado",
+      "duration": "8h 30min",
+      "modules": 6,
+      "thumbnail": "",
+      "badge": "progress",
+      "progress": 65,
+      "currentModule": 4,
+      "instructor": "Dr. Carlos Silva",
+      "rating": 4.8,
+      "students": 1247
+    },
+    {
+      "id": "processo-civil",
+      "title": "Processo Civil Estratégico",
+      "description": "Técnicas avançadas de peticionamento",
+      "category": "civil",
+      "level": "avancado",
+      "duration": "12h",
+      "modules": 8,
+      "thumbnail": "",
+      "badge": "progress",
+      "progress": 30,
+      "currentModule": 2,
+      "instructor": "Dra. Ana Paula",
+      "rating": 4.9,
+      "students": 892
+    },
+    {
+      "id": "lgpd-pratica",
+      "title": "LGPD na Prática Jurídica",
+      "description": "Proteção de dados e compliance para escritórios",
+      "category": "empresarial",
+      "level": "intermediario",
+      "duration": "12h",
+      "modules": 8,
+      "thumbnail": "",
+      "badge": "new",
+      "progress": 0,
+      "instructor": "Dr. Roberto Lima",
+      "rating": 4.7,
+      "students": 543
+    },
+    {
+      "id": "contratos-empresariais",
+      "title": "Contratos Empresariais",
+      "description": "Elaboração e análise de contratos complexos",
+      "category": "empresarial",
+      "level": "avancado",
+      "duration": "15h",
+      "modules": 10,
+      "thumbnail": "",
+      "badge": "popular",
+      "progress": 0,
+      "instructor": "Dr. Fernando Costa",
+      "rating": 4.9,
+      "students": 1834
+    },
+    {
+      "id": "previdenciario",
+      "title": "Direito Previdenciário",
+      "description": "Benefícios e aposentadorias especiais",
+      "category": "previdenciario",
+      "level": "basico",
+      "duration": "9h",
+      "modules": 6,
+      "thumbnail": "",
+      "progress": 0,
+      "instructor": "Dra. Mariana Santos",
+      "rating": 4.6,
+      "students": 678
+    },
+    {
+      "id": "tributario",
+      "title": "Direito Tributário Aplicado",
+      "description": "Planejamento tributário e elisão fiscal",
+      "category": "tributario",
+      "level": "avancado",
+      "duration": "18h",
+      "modules": 12,
+      "thumbnail": "",
+      "progress": 0,
+      "instructor": "Dr. Paulo Mendes",
+      "rating": 4.8,
+      "students": 1123
+    },
+    {
+      "id": "advocacia-digital",
+      "title": "Advocacia Digital",
+      "description": "Marketing jurídico e presença online",
+      "category": "gestao",
+      "level": "basico",
+      "duration": "8h",
+      "modules": 5,
+      "thumbnail": "",
+      "badge": "new",
+      "progress": 0,
+      "instructor": "Dra. Julia Ferreira",
+      "rating": 4.5,
+      "students": 432
+    },
+    {
+      "id": "imobiliario",
+      "title": "Direito Imobiliário",
+      "description": "Transações imobiliárias e regularização",
+      "category": "civil",
+      "level": "intermediario",
+      "duration": "11h",
+      "modules": 7,
+      "thumbnail": "",
+      "progress": 0,
+      "instructor": "Dr. Ricardo Alves",
+      "rating": 4.7,
+      "students": 789
+    }
+  ],
+  "categories": [
+    {
+      "id": "civil",
+      "name": "Direito Civil",
+      "icon": "⚖️",
+      "count": 12
+    },
+    {
+      "id": "empresarial",
+      "name": "Direito Empresarial",
+      "icon": "🏢",
+      "count": 8
+    },
+    {
+      "id": "trabalhista",
+      "name": "Direito Trabalhista",
+      "icon": "👥",
+      "count": 15
+    },
+    {
+      "id": "constitucional",
+      "name": "Direito Constitucional",
+      "icon": "🏛️",
+      "count": 6
+    },
+    {
+      "id": "tributario",
+      "name": "Direito Tributário",
+      "icon": "💰",
+      "count": 9
+    },
+    {
+      "id": "previdenciario",
+      "name": "Direito Previdenciário",
+      "icon": "🏥",
+      "count": 7
+    },
+    {
+      "id": "gestao",
+      "name": "Gestão e Marketing",
+      "icon": "📊",
+      "count": 5
+    }
+  ]
+}

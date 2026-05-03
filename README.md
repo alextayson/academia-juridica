@@ -1,91 +1,302 @@
-# Academia Jurídica - Plataforma de Cursos
+# 📚 Academia Jurídica - Plataforma de Cursos Online
 
-Plataforma completa de cursos online com design premium inspirado no Superhuman.
+Sistema completo de gestão de cursos com vídeo-aulas, progresso de alunos e certificados.
 
-## 🚀 Como usar no Lovable
+## 🚀 Tecnologias
 
-### Opção 1: Upload direto
-1. Acesse [lovable.dev](https://lovable.dev)
-2. Crie novo projeto
-3. Arraste todos os arquivos desta pasta
-4. Preview automático
-
-### Opção 2: Copiar e colar
-1. Crie novo projeto no Lovable
-2. Cole cada arquivo no editor:
-   - `index.html` → página principal
-   - `styles.css` → estilos da home
-   - `script.js` → interações da home
-   - `curso-player.html` → player de vídeo
-   - `player-styles.css` → estilos do player
-   - `player-script.js` → controles do player
-
-## 📁 Estrutura
-
-```
-plataforma-cursos/
-├── index.html              # Home com grid de cursos
-├── styles.css              # Estilos da home
-├── script.js               # Interações da home
-├── curso-player.html       # Player de vídeo
-├── player-styles.css       # Estilos do player
-├── player-script.js        # Controles do player
-└── README.md              # Este arquivo
-```
+- **Frontend:** HTML5, CSS3, JavaScript (ES6+)
+- **Backend:** Supabase (PostgreSQL + Auth + Storage)
+- **Autenticação:** Email/Senha + Google OAuth
+- **Storage:** Supabase Storage (vídeos)
+- **Hospedagem:** Qualquer servidor estático (Vercel, Netlify, GitHub Pages)
 
 ## ✨ Funcionalidades
 
-### Home (index.html)
-- Hero section com gradient purple
-- Seção "Continue assistindo" com progresso
-- Categorias jurídicas (Civil, Empresarial, Trabalhista, Constitucional)
-- Grid de cursos com badges (Novo, Popular, Em andamento)
-- Design responsivo
+### Para Alunos
+- ✅ Cadastro e login (email ou Google)
+- ✅ Navegação de cursos disponíveis
+- ✅ Matrícula em cursos
+- ✅ Player de vídeo com controles
+- ✅ Marcação de aulas concluídas
+- ✅ Acompanhamento de progresso
+- ✅ Geração de certificados (100% concluído)
 
-### Player (curso-player.html)
-- Player de vídeo com controles completos
-- Barra de progresso interativa
-- Sidebar com módulos e aulas
-- Progresso circular (65%)
-- Módulos expansíveis
-- Tabs: Resumo, Material, Discussão
-- Atalhos de teclado (Space, ← →)
+### Para Administradores
+- ✅ Painel administrativo completo
+- ✅ Criar/editar/deletar cursos
+- ✅ Criar módulos e aulas
+- ✅ Upload de vídeos (direto, YouTube, Vimeo)
+- ✅ Gerenciar matrículas
+- ✅ Visualizar estatísticas
 
-## 🎨 Design System
+## 📁 Estrutura do Projeto
 
-Baseado no Superhuman:
-- **Hero**: Purple gradient (#1b1938)
-- **Accent**: Lavender (#cbb7fb, #714cb6)
-- **Buttons**: Warm cream (#e9e5dd)
-- **Text**: Charcoal (#292827)
-- **Background**: White (#ffffff) / Dark (#0a0a0a)
+```
+plataforma-cursos/
+├── index.html              # Página inicial (lista de cursos)
+├── login.html              # Login/Signup com validação
+├── reset-password.html     # Recuperação de senha
+├── course.html             # Detalhes do curso
+├── lesson.html             # Player de aula
+├── admin.html              # Painel administrativo
+├── video-upload.html       # Upload de vídeos
+├── styles.css              # Estilos globais
+├── supabase-client.js      # Cliente Supabase configurado
+├── auth.js                 # Lógica de autenticação
+├── app.js                  # Lógica da página inicial
+├── course.js               # Lógica da página do curso
+├── lesson.js               # Lógica do player
+├── admin.js                # Lógica do painel admin
+├── video-api.js            # API de vídeos
+├── video-upload.js         # Lógica de upload
+├── schema.sql              # Schema do banco de dados
+├── storage-setup.sql       # Configuração do storage
+├── SETUP-BACKEND.md        # Guia completo de configuração
+└── README.md               # Este arquivo
+```
 
-## 🔧 Próximos passos
+## 🔧 Instalação Rápida
 
-1. **Backend**: Adicionar autenticação e banco de dados
-2. **Vídeos**: Integrar Vimeo/YouTube
-3. **Pagamentos**: Stripe/Mercado Pago
-4. **Admin**: Painel para adicionar cursos
-5. **Certificados**: Geração em PDF
+### 1. Clone o Repositório
+```bash
+git clone <seu-repositorio>
+cd plataforma-cursos
+```
 
-## 📦 Deploy rápido
+### 2. Configure o Supabase
 
-### Vercel (gratuito)
+Siga o guia completo em **[SETUP-BACKEND.md](SETUP-BACKEND.md)**
+
+Resumo:
+1. Crie projeto no [Supabase](https://supabase.com)
+2. Execute `schema.sql` no SQL Editor
+3. Execute `storage-setup.sql` para configurar storage
+4. Configure Google OAuth (opcional)
+5. Atualize credenciais em `supabase-client.js`
+
+### 3. Inicie o Servidor Local
+
+**Opção A: Live Server (VS Code)**
+```bash
+# Instale a extensão Live Server
+# Clique com botão direito em index.html → Open with Live Server
+```
+
+**Opção B: Python**
+```bash
+python -m http.server 8000
+# Acesse http://localhost:8000
+```
+
+**Opção C: Node.js**
+```bash
+npx serve
+# Acesse http://localhost:3000
+```
+
+### 4. Crie o Primeiro Admin
+
+Execute no SQL Editor do Supabase:
+```sql
+UPDATE profiles 
+SET role = 'admin' 
+WHERE email = 'seu-email@exemplo.com';
+```
+
+## 🎯 Uso
+
+### Como Aluno
+
+1. **Criar Conta**
+   - Acesse `login.html`
+   - Clique em "Criar Conta"
+   - Preencha os dados ou use Google
+
+2. **Matricular em Curso**
+   - Navegue pelos cursos em `index.html`
+   - Clique em "Ver Curso"
+   - Clique em "Matricular-se"
+
+3. **Assistir Aulas**
+   - Clique em uma aula
+   - Assista o vídeo
+   - Marque como concluída
+
+4. **Obter Certificado**
+   - Complete 100% do curso
+   - Clique em "Gerar Certificado"
+
+### Como Admin
+
+1. **Acessar Painel**
+   - Faça login como admin
+   - Acesse `admin.html`
+
+2. **Criar Curso**
+   - Clique em "Novo Curso"
+   - Preencha título, descrição, thumbnail
+   - Salve
+
+3. **Adicionar Módulos**
+   - Abra o curso
+   - Clique em "Novo Módulo"
+   - Defina título e ordem
+
+4. **Adicionar Aulas**
+   - Dentro do módulo
+   - Clique em "Nova Aula"
+   - Faça upload do vídeo ou cole URL (YouTube/Vimeo)
+   - Defina duração e ordem
+
+## 🎨 Personalização
+
+### Cores e Branding
+
+Edite `styles.css`:
+```css
+:root {
+    --primary-color: #714cb6;    /* Cor principal */
+    --secondary-color: #2d2654;  /* Cor secundária */
+    --accent-color: #9b7fd4;     /* Cor de destaque */
+}
+```
+
+### Logo
+
+Substitua o emoji 📚 por sua logo em:
+- `index.html` (linha 40)
+- `login.html` (linha 39)
+- `admin.html` (linha 45)
+
+### Textos
+
+Todos os textos estão em português e podem ser editados diretamente nos arquivos HTML.
+
+## 🔐 Segurança
+
+### Políticas RLS (Row Level Security)
+
+Todas as tabelas têm políticas de segurança:
+- **Alunos:** Leem apenas seus próprios dados
+- **Admins:** Acesso total
+- **Público:** Lê cursos e aulas (não dados de progresso)
+
+### Autenticação
+
+- Senhas hasheadas pelo Supabase
+- Tokens JWT com expiração
+- Google OAuth com PKCE
+- Reset de senha via email
+
+### Storage
+
+- Vídeos públicos (leitura)
+- Upload apenas autenticados
+- Delete apenas próprios arquivos ou admin
+
+## 📊 Banco de Dados
+
+### Tabelas Principais
+
+**profiles**
+- Perfis de usuários (aluno/admin)
+- Criado automaticamente no signup
+
+**courses**
+- Cursos disponíveis
+- Thumbnail, descrição, instrutor
+
+**modules**
+- Módulos dos cursos
+- Ordem sequencial
+
+**lessons**
+- Aulas com vídeos
+- URL, duração, ordem
+
+**enrollments**
+- Matrículas dos alunos
+- Data de início
+
+**progress**
+- Progresso por aula
+- Marcação de conclusão
+
+**certificates**
+- Certificados gerados
+- Data de emissão
+
+## 🎥 Formatos de Vídeo Suportados
+
+### Upload Direto
+- MP4 (recomendado)
+- WebM
+- OGG
+- Máximo: 500MB
+
+### URLs Externas
+- YouTube (todos os formatos de URL)
+- Vimeo (todos os formatos de URL)
+- Vídeos diretos (.mp4, .webm, .ogg)
+
+## 🚀 Deploy
+
+### Vercel
 ```bash
 npm i -g vercel
 vercel
 ```
 
-### Netlify (gratuito)
-Arraste a pasta no [netlify.com/drop](https://app.netlify.com/drop)
+### Netlify
+```bash
+npm i -g netlify-cli
+netlify deploy
+```
 
-## 💡 Dicas para Lovable
+### GitHub Pages
+1. Push para GitHub
+2. Settings → Pages
+3. Source: main branch
+4. Salvar
 
-- Lovable renderiza HTML/CSS/JS automaticamente
-- Use o editor visual para ajustes rápidos
-- Adicione backend com Supabase (integração nativa)
-- Publique com 1 clique
+**Importante:** Atualize as Authorized redirect URIs no Google Cloud Console com seu domínio de produção.
+
+## 🐛 Troubleshooting
+
+Consulte a seção completa de troubleshooting em **[SETUP-BACKEND.md](SETUP-BACKEND.md#7-troubleshooting)**
+
+### Problemas Comuns
+
+**Erro: Invalid API key**
+- Verifique credenciais em `supabase-client.js`
+
+**Vídeos não carregam**
+- Verifique políticas do bucket `course-videos`
+
+**Google OAuth não funciona**
+- Verifique redirect URI no Google Cloud Console
+
+**Não consigo criar admin**
+- Execute SQL para atualizar role do usuário
 
 ## 📝 Licença
 
-Livre para uso pessoal e comercial.
+MIT License - use livremente para projetos pessoais ou comerciais.
+
+## 🤝 Contribuindo
+
+1. Fork o projeto
+2. Crie uma branch (`git checkout -b feature/nova-funcionalidade`)
+3. Commit suas mudanças (`git commit -m 'Adiciona nova funcionalidade'`)
+4. Push para a branch (`git push origin feature/nova-funcionalidade`)
+5. Abra um Pull Request
+
+## 📞 Suporte
+
+- **Documentação:** [SETUP-BACKEND.md](SETUP-BACKEND.md)
+- **Supabase Docs:** [supabase.com/docs](https://supabase.com/docs)
+- **Issues:** Abra uma issue no GitHub
+
+---
+
+✅ **Plataforma completa e pronta para uso!**

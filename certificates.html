@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificados - Academia Jurídica</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .certificates-header {
+            background: linear-gradient(135deg, #1b1938 0%, #2d2654 100%);
+            color: white;
+            padding: 60px 20px;
+        }
+
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 24px;
+            margin: 40px 0;
+        }
+
+        .certificate-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .certificate-preview {
+            background: linear-gradient(135deg, #f8f5ff 0%, #e8e0ff 100%);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 3px solid #714cb6;
+        }
+
+        .certificate-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .certificate-info {
+            padding: 24px;
+        }
+
+        .certificate-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .certificate-meta {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 16px;
+        }
+
+        .certificate-number {
+            font-family: monospace;
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 16px;
+        }
+
+        .certificate-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-download, .btn-verify {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-download {
+            background: #714cb6;
+            color: white;
+        }
+
+        .btn-download:hover {
+            background: #5a3a92;
+        }
+
+        .btn-verify {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-verify:hover {
+            background: #e0e0e0;
+        }
+
+        .verify-section {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .verify-input {
+            max-width: 400px;
+            margin: 20px auto;
+            display: flex;
+            gap: 12px;
+        }
+
+        .verify-input input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .verify-result {
+            margin-top: 24px;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .verify-result.valid {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .verify-result.invalid {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="color: inherit; text-decoration: none;">Academia Jurídica</a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Cursos</a>
+                <a href="progress.html">Meu Progresso</a>
+                <a href="certificates.html">Certificados</a>
+                <div id="userMenu" style="display: none;">
+                    <span id="userName"></span>
+                    <button class="nav-cta" id="logoutBtn">Sair</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="certificates-header">
+        <div class="container">
+            <h1>Meus Certificados</h1>
+            <p>Certificados de conclusão dos seus cursos</p>
+        </div>
+    </div>
+
+    <div class="container" style="padding: 40px 20px;">
+        <div class="certificates-grid" id="certificatesGrid">
+            <p>Carregando certificados...</p>
+        </div>
+
+        <div class="verify-section">
+            <h2>Verificar Certificado</h2>
+            <p>Digite o código de verificação para validar um certificado</p>
+            <div class="verify-input">
+                <input type="text" id="verifyCode" placeholder="Código de verificação">
+                <button class="btn-download" onclick="verifyCertificate()">Verificar</button>
+            </div>
+            <div id="verifyResult"></div>
+        </div>
+    </div>
+
+    <script type="module" src="certificates.js"></script>
+</body>
+</html>

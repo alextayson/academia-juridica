@@ -1,0 +1,176 @@
+{
+  "trabalhista-avancado": {
+    "modules": [
+      {
+        "id": 1,
+        "title": "Módulo 1: Introdução",
+        "duration": "45min",
+        "completed": true,
+        "lessons": [
+          {
+            "id": 1,
+            "title": "Apresentação do curso",
+            "duration": "10min",
+            "completed": true,
+            "videoUrl": ""
+          },
+          {
+            "id": 2,
+            "title": "Contexto histórico",
+            "duration": "15min",
+            "completed": true,
+            "videoUrl": ""
+          },
+          {
+            "id": 3,
+            "title": "Objetivos da reforma",
+            "duration": "20min",
+            "completed": true,
+            "videoUrl": ""
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Módulo 2: Contratos",
+        "duration": "1h 20min",
+        "completed": true,
+        "lessons": [
+          {
+            "id": 4,
+            "title": "Tipos de contrato",
+            "duration": "25min",
+            "completed": true,
+            "videoUrl": ""
+          },
+          {
+            "id": 5,
+            "title": "Cláusulas essenciais",
+            "duration": "30min",
+            "completed": true,
+            "videoUrl": ""
+          },
+          {
+            "id": 6,
+            "title": "Rescisão contratual",
+            "duration": "25min",
+            "completed": true,
+            "videoUrl": ""
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Módulo 3: Jornada de Trabalho",
+        "duration": "1h 10min",
+        "completed": true,
+        "lessons": [
+          {
+            "id": 7,
+            "title": "Jornada padrão",
+            "duration": "20min",
+            "completed": true,
+            "videoUrl": ""
+          },
+          {
+            "id": 8,
+            "title": "Horas extras",
+            "duration": "25min",
+            "completed": true,
+            "videoUrl": ""
+          },
+          {
+            "id": 9,
+            "title": "Banco de horas",
+            "duration": "25min",
+            "completed": true,
+            "videoUrl": ""
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Módulo 4: Reforma Trabalhista",
+        "duration": "1h 30min",
+        "completed": false,
+        "active": true,
+        "lessons": [
+          {
+            "id": 10,
+            "title": "Visão geral das mudanças",
+            "duration": "25min",
+            "completed": true,
+            "videoUrl": ""
+          },
+          {
+            "id": 11,
+            "title": "Principais alterações",
+            "duration": "28min",
+            "completed": false,
+            "active": true,
+            "videoUrl": "",
+            "currentTime": 750
+          },
+          {
+            "id": 12,
+            "title": "Casos práticos",
+            "duration": "37min",
+            "completed": false,
+            "videoUrl": ""
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Módulo 5: Rescisão",
+        "duration": "55min",
+        "completed": false,
+        "lessons": [
+          {
+            "id": 13,
+            "title": "Tipos de rescisão",
+            "duration": "20min",
+            "completed": false,
+            "videoUrl": ""
+          },
+          {
+            "id": 14,
+            "title": "Cálculos rescisórios",
+            "duration": "35min",
+            "completed": false,
+            "videoUrl": ""
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Módulo 6: Prática Avançada",
+        "duration": "2h",
+        "completed": false,
+        "lessons": [
+          {
+            "id": 15,
+            "title": "Casos complexos",
+            "duration": "45min",
+            "completed": false,
+            "videoUrl": ""
+          },
+          {
+            "id": 16,
+            "title": "Jurisprudência recente",
+            "duration": "40min",
+            "completed": false,
+            "videoUrl": ""
+          },
+          {
+            "id": 17,
+            "title": "Projeto final",
+            "duration": "35min",
+            "completed": false,
+            "videoUrl": ""
+          }
+        ]
+      }
+    ]
+  }
+}

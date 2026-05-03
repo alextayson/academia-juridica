@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Plataforma de Cursos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1b1938 0%, #2d2654 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .auth-container {
+            background: white;
+            border-radius: 16px;
+            padding: 48px;
+            max-width: 440px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .auth-logo {
+            font-size: 32px;
+            font-weight: 700;
+            color: #714cb6;
+            margin-bottom: 8px;
+        }
+
+        .form-input.error {
+            border-color: #e74c3c;
+        }
+
+        .form-input.success {
+            border-color: #27ae60;
+        }
+
+        .password-strength {
+            margin-top: 8px;
+            height: 4px;
+            background: #f0f0f0;
+            border-radius: 2px;
+            overflow: hidden;
+            display: none;
+        }
+
+        .password-strength.show {
+            display: block;
+        }
+
+        .password-strength-bar {
+            height: 100%;
+            transition: all 0.3s;
+        }
+
+        .password-strength-bar.weak {
+            width: 33%;
+            background: #e74c3c;
+        }
+
+        .password-strength-bar.medium {
+            width: 66%;
+            background: #f39c12;
+        }
+
+        .password-strength-bar.strong {
+            width: 100%;
+            background: #27ae60;
+        }
+
+        .password-hint {
+            font-size: 12px;
+            color: #999;
+            margin-top: 4px;
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin-top: -8px;
+            margin-bottom: 16px;
+        }
+
+        .forgot-password a {
+            font-size: 13px;
+            color: #714cb6;
+            text-decoration: none;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        .auth-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #292827;
+            margin-bottom: 8px;
+        }
+
+        .auth-subtitle {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .auth-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+            background: #f5f5f5;
+            padding: 4px;
+            border-radius: 8px;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            background: transparent;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .auth-tab.active {
+            background: white;
+            color: #714cb6;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #292827;
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #714cb6;
+        }
+
+        .form-error {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .form-error.show {
+            display: block;
+        }
+
+        .auth-button {
+            width: 100%;
+            padding: 14px;
+            background: #714cb6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            margin-bottom: 16px;
+        }
+
+        .auth-button:hover {
+            opacity: 0.9;
+        }
+
+        .auth-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .auth-divider {
+            text-align: center;
+            margin: 24px 0;
+            position: relative;
+        }
+
+        .auth-divider::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100%;
+            height: 1px;
+            background: #ddd;
+        }
+
+        .auth-divider span {
+            background: white;
+            padding: 0 16px;
+            position: relative;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .google-button {
+            width: 100%;
+            padding: 14px;
+            background: white;
+            color: #292827;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .google-button:hover {
+            background: #f5f5f5;
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .auth-footer a {
+            color: #714cb6;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        @media (max-width: 480px) {
+            .auth-container {
+                padding: 32px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-header">
+            <div class="auth-logo">📚 Cursos</div>
+            <h1 class="auth-title">Bem-vindo</h1>
+            <p class="auth-subtitle">Entre ou crie sua conta</p>
+        </div>
+
+        <div class="auth-tabs">
+            <button class="auth-tab active" data-tab="login">Entrar</button>
+            <button class="auth-tab" data-tab="signup">Criar Conta</button>
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm" class="auth-form active">
+            <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-input" id="loginEmail" required>
+                <div class="form-error" id="loginEmailError"></div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Senha</label>
+                <input type="password" class="form-input" id="loginPassword" required>
+                <div class="form-error" id="loginPasswordError"></div>
+            </div>
+
+            <div class="forgot-password">
+                <a href="#" id="forgotPasswordLink">Esqueceu a senha?</a>
+            </div>
+
+            <button type="submit" class="auth-button">Entrar</button>
+
+            <div class="auth-divider"><span>ou</span></div>
+
+            <button type="button" class="google-button" id="googleLoginBtn">
+                <svg width="18" height="18" viewBox="0 0 18 18">
+                    <path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z"/>
+                    <path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.258c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332C2.438 15.983 5.482 18 9 18z"/>
+                    <path fill="#FBBC05" d="M3.964 10.707c-.18-.54-.282-1.117-.282-1.707s.102-1.167.282-1.707V4.961H.957C.347 6.175 0 7.55 0 9s.348 2.825.957 4.039l3.007-2.332z"/>
+                    <path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0 5.482 0 2.438 2.017.957 4.961L3.964 7.293C4.672 5.163 6.656 3.58 9 3.58z"/>
+                </svg>
+                Continuar com Google
+            </button>
+        </form>
+
+        <!-- Signup Form -->
+        <form id="signupForm" class="auth-form">
+            <div class="form-group">
+                <label class="form-label">Nome Completo</label>
+                <input type="text" class="form-input" id="signupName" required>
+                <div class="form-error" id="signupNameError"></div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-input" id="signupEmail" required>
+                <div class="form-error" id="signupEmailError"></div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Senha</label>
+                <input type="password" class="form-input" id="signupPassword" required minlength="6">
+                <div class="password-strength" id="passwordStrength">
+                    <div class="password-strength-bar"></div>
+                </div>
+                <div class="password-hint">Mínimo 6 caracteres</div>
+                <div class="form-error" id="signupPasswordError"></div>
+            </div>
+
+            <button type="submit" class="auth-button">Criar Conta</button>
+
+            <div class="auth-divider"><span>ou</span></div>
+
+            <button type="button" class="google-button" id="googleSignupBtn">
+                <svg width="18" height="18" viewBox="0 0 18 18">
+                    <path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z"/>
+                    <path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.258c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332C2.438 15.983 5.482 18 9 18z"/>
+                    <path fill="#FBBC05" d="M3.964 10.707c-.18-.54-.282-1.117-.282-1.707s.102-1.167.282-1.707V4.961H.957C.347 6.175 0 7.55 0 9s.348 2.825.957 4.039l3.007-2.332z"/>
+                    <path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0 5.482 0 2.438 2.017.957 4.961L3.964 7.293C4.672 5.163 6.656 3.58 9 3.58z"/>
+                </svg>
+                Continuar com Google
+            </button>
+        </form>
+
+        <div class="loading" id="loading">
+            <p>Carregando...</p>
+        </div>
+    </div>
+
+    <script type="module" src="auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso - Academia Jurídica</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .course-header {
+            background: linear-gradient(135deg, #1b1938 0%, #2d2654 100%);
+            color: white;
+            padding: 60px 20px;
+        }
+
+        .course-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .course-header h1 {
+            font-size: 36px;
+            margin-bottom: 16px;
+        }
+
+        .course-header-meta {
+            display: flex;
+            gap: 24px;
+            margin-top: 16px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .course-layout {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 32px;
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .course-main {
+            min-width: 0;
+        }
+
+        .video-player {
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            margin-bottom: 24px;
+        }
+
+        .video-player iframe {
+            width: 100%;
+            height: 100%;
+        }
+
+        .lesson-info {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+        }
+
+        .lesson-info h2 {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        /* Tabs */
+        .lesson-tabs {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .tabs-header {
+            display: flex;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 16px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active {
+            color: #714cb6;
+            border-bottom: 2px solid #714cb6;
+            margin-bottom: -2px;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 24px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Notes */
+        .note-editor {
+            margin-bottom: 24px;
+        }
+
+        .note-editor textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+        }
+
+        .note-editor textarea:focus {
+            outline: none;
+            border-color: #714cb6;
+        }
+
+        .note-editor button {
+            margin-top: 12px;
+            padding: 10px 20px;
+            background: #714cb6;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .note-item {
+            background: #f8f8f8;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .note-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .note-timestamp {
+            background: #714cb6;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .note-content {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .note-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .note-action-btn {
+            padding: 4px 12px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        /* Comments */
+        .comment-editor {
+            margin-bottom: 24px;
+        }
+
+        .comment-editor textarea {
+            width: 100%;
+            min-height: 80px;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+        }
+
+        .comment-editor button {
+            margin-top: 12px;
+            padding: 10px 20px;
+            background: #714cb6;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .comment-item {
+            background: #f8f8f8;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .comment-item.reply {
+            margin-left: 40px;
+            margin-top: 12px;
+            background: white;
+            border: 1px solid #e0e0e0;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .comment-author {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+
+        .comment-author img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+        }
+
+        .instructor-badge {
+            background: #714cb6;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .comment-date {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .comment-content {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        .comment-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .comment-action-btn {
+            padding: 4px 12px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .comment-replies {
+            margin-top: 12px;
+        }
+
+        /* Sidebar */
+        .course-sidebar {
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+
+        .modules-list {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .module {
+            border-bottom: 1px solid #eee;
+        }
+
+        .module:last-child {
+            border-bottom: none;
+        }
+
+        .module-header {
+            padding: 16px 20px;
+            background: #f8f8f8;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .module-header:hover {
+            background: #f0f0f0;
+        }
+
+        .lessons-list {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s;
+        }
+
+        .lessons-list.open {
+            max-height: 1000px;
+        }
+
+        .lesson-item {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .lesson-item:hover {
+            background: #f8f8f8;
+        }
+
+        .lesson-item.active {
+            background: #f0e8ff;
+            border-left: 3px solid #714cb6;
+        }
+
+        .lesson-item.completed {
+            opacity: 0.7;
+        }
+
+        .lesson-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ddd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .lesson-checkbox.checked {
+            background: #714cb6;
+            border-color: #714cb6;
+            color: white;
+        }
+
+        .lesson-title {
+            flex: 1;
+            font-size: 14px;
+        }
+
+        .lesson-duration {
+            font-size: 12px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="color: inherit; text-decoration: none;">Academia Jurídica</a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Cursos</a>
+                <a href="progress.html">Meu Progresso</a>
+                <a href="certificates.html">Certificados</a>
+                <div id="userMenu" style="display: none;">
+                    <span id="userName"></span>
+                    <button class="nav-cta" id="logoutBtn">Sair</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="course-header">
+        <div class="course-header-content">
+            <h1 id="courseTitle">Carregando...</h1>
+            <p id="courseDescription"></p>
+            <div class="course-header-meta">
+                <span id="courseInstructor"></span>
+                <span id="courseLevel"></span>
+                <span id="courseProgress"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="course-layout">
+        <div class="course-main">
+            <div class="video-player" id="videoPlayer">
+                <p style="color: white; padding: 40px; text-align: center;">Carregando vídeo...</p>
+            </div>
+
+            <div class="lesson-info">
+                <h2 id="lessonTitle">Selecione uma aula</h2>
+                <p id="lessonDescription"></p>
+            </div>
+
+            <div class="lesson-tabs">
+                <div class="tabs-header">
+                    <button class="tab-btn active" onclick="switchTab('notes')">📝 Anotações</button>
+                    <button class="tab-btn" onclick="switchTab('comments')">💬 Discussão</button>
+                </div>
+
+                <div class="tab-content active" id="notesTab">
+                    <div class="note-editor">
+                        <textarea id="noteContent" placeholder="Faça suas anotações aqui..."></textarea>
+                        <button id="saveNoteBtn">Salvar Anotação</button>
+                    </div>
+                    <div id="notesList"></div>
+                </div>
+
+                <div class="tab-content" id="commentsTab">
+                    <div class="comment-editor">
+                        <textarea id="commentContent" placeholder="Deixe seu comentário ou dúvida..."></textarea>
+                        <button id="postCommentBtn">Publicar Comentário</button>
+                    </div>
+                    <div id="commentsList"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-sidebar">
+            <div class="modules-list" id="modulesList">
+                <p style="padding: 20px;">Carregando módulos...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+            event.target.classList.add('active');
+            document.getElementById(tab + 'Tab').classList.add('active');
+        }
+    </script>
+    <script type="module" src="course-player.js"></script>
+</body>
+</html>

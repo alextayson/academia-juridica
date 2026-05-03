@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload de Vídeo - Academia Jurídica</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .upload-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .upload-card {
+            background: white;
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .upload-tabs {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 32px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .upload-tab {
+            padding: 12px 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            transition: all 0.2s;
+        }
+
+        .upload-tab.active {
+            color: #714cb6;
+            border-bottom-color: #714cb6;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .drop-zone {
+            border: 3px dashed #ddd;
+            border-radius: 12px;
+            padding: 60px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: #fafafa;
+        }
+
+        .drop-zone.dragover {
+            border-color: #714cb6;
+            background: #f8f5ff;
+        }
+
+        .drop-zone-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .drop-zone-text {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .drop-zone-hint {
+            font-size: 13px;
+            color: #999;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .upload-progress {
+            display: none;
+            margin-top: 24px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #714cb6;
+            transition: width 0.3s;
+        }
+
+        .progress-text {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .btn-primary {
+            padding: 12px 32px;
+            background: #714cb6;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .video-preview {
+            display: none;
+            margin-top: 24px;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .video-preview video {
+            width: 100%;
+            max-height: 400px;
+        }
+
+        .video-info {
+            display: none;
+            margin-top: 16px;
+            padding: 16px;
+            background: #f8f8f8;
+            border-radius: 8px;
+        }
+
+        .video-info-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .success-message {
+            display: none;
+            padding: 16px;
+            background: #d4edda;
+            color: #155724;
+            border-radius: 8px;
+            margin-top: 24px;
+        }
+
+        .error-message {
+            display: none;
+            padding: 16px;
+            background: #f8d7da;
+            color: #721c24;
+            border-radius: 8px;
+            margin-top: 24px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="color: inherit; text-decoration: none;">Academia Jurídica</a>
+            </div>
+            <div class="nav-links">
+                <a href="admin.html">← Voltar ao Admin</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="upload-container">
+        <div class="upload-card">
+            <h1>Upload de Vídeo</h1>
+
+            <div class="upload-tabs">
+                <button class="upload-tab active" onclick="switchUploadTab('direct')">📤 Upload Direto</button>
+                <button class="upload-tab" onclick="switchUploadTab('youtube')">▶️ YouTube</button>
+                <button class="upload-tab" onclick="switchUploadTab('vimeo')">🎬 Vimeo</button>
+            </div>
+
+            <!-- Direct Upload Tab -->
+            <div class="tab-content active" id="directTab">
+                <div class="drop-zone" id="dropZone">
+                    <div class="drop-zone-icon">📁</div>
+                    <div class="drop-zone-text">Arraste o vídeo aqui ou clique para selecionar</div>
+                    <div class="drop-zone-hint">MP4, WebM ou OGG • Máximo 500MB</div>
+                </div>
+                <input type="file" id="fileInput" class="file-input" accept="video/mp4,video/webm,video/ogg">
+
+                <div class="video-preview" id="videoPreview">
+                    <video id="previewVideo" controls></video>
+                </div>
+
+                <div class="video-info" id="videoInfo">
+                    <div class="video-info-item">
+                        <span>Nome:</span>
+                        <strong id="fileName"></strong>
+                    </div>
+                    <div class="video-info-item">
+                        <span>Tamanho:</span>
+                        <strong id="fileSize"></strong>
+                    </div>
+                    <div class="video-info-item">
+                        <span>Duração:</span>
+                        <strong id="fileDuration"></strong>
+                    </div>
+                    <div class="video-info-item">
+                        <span>Resolução:</span>
+                        <strong id="fileResolution"></strong>
+                    </div>
+                </div>
+
+                <div class="upload-progress" id="uploadProgress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-text" id="progressText">0%</div>
+                </div>
+
+                <button class="btn-primary" id="uploadBtn" style="margin-top: 24px; display: none;">
+                    Fazer Upload
+                </button>
+            </div>
+
+            <!-- YouTube Tab -->
+            <div class="tab-content" id="youtubeTab">
+                <div class="form-group">
+                    <label>URL do YouTube</label>
+                    <input type="text" id="youtubeUrl" placeholder="https://www.youtube.com/watch?v=...">
+                </div>
+                <button class="btn-primary" onclick="processYouTubeUrl()">Adicionar Vídeo</button>
+            </div>
+
+            <!-- Vimeo Tab -->
+            <div class="tab-content" id="vimeoTab">
+                <div class="form-group">
+                    <label>URL do Vimeo</label>
+                    <input type="text" id="vimeoUrl" placeholder="https://vimeo.com/...">
+                </div>
+                <button class="btn-primary" onclick="processVimeoUrl()">Adicionar Vídeo</button>
+            </div>
+
+            <div class="success-message" id="successMessage"></div>
+            <div class="error-message" id="errorMessage"></div>
+        </div>
+    </div>
+
+    <script type="module" src="video-upload.js"></script>
+</body>
+</html>

@@ -4,190 +4,143 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Academia Jurídica - Plataforma de Cursos</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles-modern.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-container">
-            <div class="nav-logo">Academia Jurídica</div>
-            <div class="nav-links">
-                <a href="#cursos">Cursos</a>
-                <a href="#progresso">Meu Progresso</a>
-                <a href="#certificados">Certificados</a>
-                <button class="nav-cta">Minha Conta</button>
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">📚</span>
+                <span>Academia Jurídica</span>
+            </a>
+            <nav class="nav-links">
+                <a href="#cursos" class="nav-link">Cursos</a>
+                <a href="#progresso" class="nav-link">Meu Progresso</a>
+                <a href="#certificados" class="nav-link">Certificados</a>
+            </nav>
+            <div class="user-menu">
+                <div id="userMenu" style="display: none;">
+                    <div class="user-avatar" id="userAvatar"></div>
+                    <button class="btn btn-ghost" id="logoutBtn">
+                        <i data-lucide="log-out"></i>
+                        Sair
+                    </button>
+                </div>
+                <button class="btn btn-primary" id="loginBtn">
+                    <i data-lucide="log-in"></i>
+                    Entrar
+                </button>
             </div>
         </div>
-    </nav>
+    </header>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Domine o Direito<br>com Excelência</h1>
-            <p class="hero-subtitle">Cursos especializados para advogados que buscam atualização constante e resultados práticos</p>
-            <button class="hero-cta">Explorar Cursos</button>
+    <section class="hero" style="background: linear-gradient(135deg, #1b1938 0%, #2d2654 100%); padding: 80px 20px; text-align: center; position: relative; z-index: 1;">
+        <div class="hero-content" style="max-width: 800px; margin: 0 auto;">
+            <h1 class="hero-title" style="font-size: 48px; font-weight: 800; color: white; margin-bottom: 16px; line-height: 1.2;">
+                Domine o Direito<br>com Excelência
+            </h1>
+            <p class="hero-subtitle" style="font-size: 20px; color: rgba(255,255,255,0.8); margin-bottom: 40px;">
+                Cursos especializados para advogados que buscam atualização constante e resultados práticos
+            </p>
+
+            <!-- Search Bar -->
+            <div class="search-container" style="max-width: 600px; margin: 0 auto; display: flex; gap: 8px; background: white; padding: 8px; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.2);">
+                <i data-lucide="search" style="margin: auto 12px; color: #999;"></i>
+                <input type="text" id="searchInput" class="input" placeholder="Buscar cursos..." style="border: none; flex: 1; padding: 12px 0;">
+                <button class="btn btn-primary" style="border-radius: 12px;">
+                    <i data-lucide="search"></i>
+                    Buscar
+                </button>
+            </div>
         </div>
     </section>
 
     <!-- Continue Assistindo -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">Continue de onde parou</h2>
-            <div class="course-grid">
-                <div class="course-card progress">
-                    <div class="course-thumbnail">
-                        <div class="course-badge">Em andamento</div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 65%"></div>
-                        </div>
-                    </div>
-                    <div class="course-info">
-                        <h3 class="course-title">Direito Trabalhista Avançado</h3>
-                        <p class="course-meta">Módulo 4 de 6 • 65% concluído</p>
-                        <p class="course-description">Reforma trabalhista e suas implicações práticas</p>
-                    </div>
-                </div>
-
-                <div class="course-card progress">
-                    <div class="course-thumbnail">
-                        <div class="course-badge">Em andamento</div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 30%"></div>
-                        </div>
-                    </div>
-                    <div class="course-info">
-                        <h3 class="course-title">Processo Civil Estratégico</h3>
-                        <p class="course-meta">Módulo 2 de 8 • 30% concluído</p>
-                        <p class="course-description">Técnicas avançadas de peticionamento</p>
-                    </div>
-                </div>
+    <section class="section" style="padding: 60px 20px; position: relative; z-index: 1;">
+        <div class="container" style="max-width: 1200px; margin: 0 auto;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
+                <h2 style="font-size: 32px; font-weight: 700; color: white; margin: 0;">Continue de onde parou</h2>
             </div>
+            <div id="continueLoading" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px;">
+                <div class="card skeleton skeleton-card"></div>
+                <div class="card skeleton skeleton-card"></div>
+            </div>
+            <div id="continueGrid" style="display: none; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px;"></div>
         </div>
     </section>
 
     <!-- Categorias -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">Explore por Categoria</h2>
-            <div class="category-grid">
-                <div class="category-card">
-                    <div class="category-icon">⚖️</div>
-                    <h3 class="category-title">Direito Civil</h3>
-                    <p class="category-count">12 cursos</p>
+    <section class="section" style="padding: 60px 20px; background: rgba(255,255,255,0.05); position: relative; z-index: 1;">
+        <div class="container" style="max-width: 1200px; margin: 0 auto;">
+            <h2 style="font-size: 32px; font-weight: 700; color: white; margin-bottom: 32px;">Explore por Categoria</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px;">
+                <div class="card card-interactive" style="text-align: center; padding: 32px 20px;">
+                    <div style="margin-bottom: 16px;"><i data-lucide="scale" style="width: 48px; height: 48px; color: var(--primary-color);"></i></div>
+                    <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">Direito Civil</h3>
+                    <p style="color: var(--text-muted); font-size: 14px;">12 cursos</p>
                 </div>
-                <div class="category-card">
-                    <div class="category-icon">🏢</div>
-                    <h3 class="category-title">Direito Empresarial</h3>
-                    <p class="category-count">8 cursos</p>
+                <div class="card card-interactive" style="text-align: center; padding: 32px 20px;">
+                    <div style="margin-bottom: 16px;"><i data-lucide="briefcase" style="width: 48px; height: 48px; color: var(--primary-color);"></i></div>
+                    <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">Direito Empresarial</h3>
+                    <p style="color: var(--text-muted); font-size: 14px;">8 cursos</p>
                 </div>
-                <div class="category-card">
-                    <div class="category-icon">👥</div>
-                    <h3 class="category-title">Direito Trabalhista</h3>
-                    <p class="category-count">15 cursos</p>
+                <div class="card card-interactive" style="text-align: center; padding: 32px 20px;">
+                    <div style="margin-bottom: 16px;"><i data-lucide="users" style="width: 48px; height: 48px; color: var(--primary-color);"></i></div>
+                    <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">Direito Trabalhista</h3>
+                    <p style="color: var(--text-muted); font-size: 14px;">15 cursos</p>
                 </div>
-                <div class="category-card">
-                    <div class="category-icon">🏛️</div>
-                    <h3 class="category-title">Direito Constitucional</h3>
-                    <p class="category-count">6 cursos</p>
+                <div class="card card-interactive" style="text-align: center; padding: 32px 20px;">
+                    <div style="margin-bottom: 16px;"><i data-lucide="landmark" style="width: 48px; height: 48px; color: var(--primary-color);"></i></div>
+                    <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">Direito Constitucional</h3>
+                    <p style="color: var(--text-muted); font-size: 14px;">6 cursos</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Todos os Cursos -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">Todos os Cursos</h2>
-
-            <div class="course-grid">
-                <div class="course-card">
-                    <div class="course-thumbnail">
-                        <div class="course-badge new">Novo</div>
-                    </div>
-                    <div class="course-info">
-                        <h3 class="course-title">LGPD na Prática Jurídica</h3>
-                        <p class="course-meta">8 módulos • 12h de conteúdo</p>
-                        <p class="course-description">Proteção de dados e compliance para escritórios</p>
-                        <div class="course-footer">
-                            <span class="course-level">Intermediário</span>
-                            <button class="course-action">Iniciar</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="course-card">
-                    <div class="course-thumbnail">
-                        <div class="course-badge">Popular</div>
-                    </div>
-                    <div class="course-info">
-                        <h3 class="course-title">Contratos Empresariais</h3>
-                        <p class="course-meta">10 módulos • 15h de conteúdo</p>
-                        <p class="course-description">Elaboração e análise de contratos complexos</p>
-                        <div class="course-footer">
-                            <span class="course-level">Avançado</span>
-                            <button class="course-action">Iniciar</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="course-card">
-                    <div class="course-thumbnail"></div>
-                    <div class="course-info">
-                        <h3 class="course-title">Direito Previdenciário</h3>
-                        <p class="course-meta">6 módulos • 9h de conteúdo</p>
-                        <p class="course-description">Benefícios e aposentadorias especiais</p>
-                        <div class="course-footer">
-                            <span class="course-level">Básico</span>
-                            <button class="course-action">Iniciar</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="course-card">
-                    <div class="course-thumbnail"></div>
-                    <div class="course-info">
-                        <h3 class="course-title">Direito Tributário Aplicado</h3>
-                        <p class="course-meta">12 módulos • 18h de conteúdo</p>
-                        <p class="course-description">Planejamento tributário e elisão fiscal</p>
-                        <div class="course-footer">
-                            <span class="course-level">Avançado</span>
-                            <button class="course-action">Iniciar</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="course-card">
-                    <div class="course-thumbnail">
-                        <div class="course-badge new">Novo</div>
-                    </div>
-                    <div class="course-info">
-                        <h3 class="course-title">Advocacia Digital</h3>
-                        <p class="course-meta">5 módulos • 8h de conteúdo</p>
-                        <p class="course-description">Marketing jurídico e presença online</p>
-                        <div class="course-footer">
-                            <span class="course-level">Básico</span>
-                            <button class="course-action">Iniciar</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="course-card">
-                    <div class="course-thumbnail"></div>
-                    <div class="course-info">
-                        <h3 class="course-title">Direito Imobiliário</h3>
-                        <p class="course-meta">7 módulos • 11h de conteúdo</p>
-                        <p class="course-description">Transações imobiliárias e regularização</p>
-                        <div class="course-footer">
-                            <span class="course-level">Intermediário</span>
-                            <button class="course-action">Iniciar</button>
-                        </div>
-                    </div>
+    <section class="section" style="padding: 60px 20px; position: relative; z-index: 1;">
+        <div class="container" style="max-width: 1200px; margin: 0 auto;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
+                <h2 style="font-size: 32px; font-weight: 700; color: white; margin: 0;">Todos os Cursos</h2>
+                <div style="display: flex; gap: 12px;">
+                    <button class="btn btn-secondary" style="background: rgba(255,255,255,0.1); color: white; border: none;">
+                        <i data-lucide="filter"></i> Filtrar
+                    </button>
                 </div>
             </div>
+            <div id="coursesLoading" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px;">
+                <div class="card skeleton skeleton-card"></div>
+                <div class="card skeleton skeleton-card"></div>
+                <div class="card skeleton skeleton-card"></div>
+                <div class="card skeleton skeleton-card"></div>
+            </div>
+            <div id="coursesGrid" style="display: none; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px;"></div>
         </div>
     </section>
 
-    <script src="script.js"></script>
+    <footer style="background: rgba(0,0,0,0.2); padding: 40px 20px; text-align: center; color: rgba(255,255,255,0.7); position: relative; z-index: 1;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <p style="margin-bottom: 16px;">© 2024 Academia Jurídica. Todos os direitos reservados.</p>
+            <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;">
+                <a href="#" style="color: rgba(255,255,255,0.7); text-decoration: none;">Termos de Uso</a>
+                <a href="#" style="color: rgba(255,255,255,0.7); text-decoration: none;">Política de Privacidade</a>
+                <a href="#" style="color: rgba(255,255,255,0.7); text-decoration: none;">Contato</a>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="app-modern.js"></script>
+    <script>
+        lucide.createIcons();
+        const header = document.querySelector('.header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+    </script>
 </body>
 </html>
-<!-- Teste de sincronização -->

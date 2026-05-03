@@ -1,0 +1,37 @@
+
+/* Notification Bell */
+.notification-bell {
+    position: relative;
+    margin-right: 16px;
+}
+
+.notification-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: #e74c3c;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 10px;
+    min-width: 18px;
+    text-align: center;
+}
+
+.notification-dropdown {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    width: 360px;
+    max-height: 500px;
+    overflow-y: auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    z-index: 1000;
+}
+
+.notification-item:hover {
+    background: #f8f8f8 !important;
+}
