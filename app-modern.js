@@ -97,17 +97,17 @@ function createCourseCard(course) {
 
     return `
         <div class="course-card" data-course-id="${course.id}" onclick="handleCourseAction('${course.id}')">
-            <div style="position: relative; overflow: hidden; border-radius: 16px 16px 0 0;">
+            <div style="position: relative; overflow: hidden;">
                 ${course.thumbnail_url
-                    ? `<img src="${course.thumbnail_url}" alt="${course.title}" class="course-thumbnail" style="width: 100%; height: 200px; object-fit: cover;">`
-                    : `<div class="course-thumbnail" style="width: 100%; height: 200px; background: linear-gradient(135deg, var(--primary-color), var(--primary-light));"></div>`
+                    ? `<img src="${course.thumbnail_url}" alt="${course.title}" class="course-thumbnail">`
+                    : `<div class="course-thumbnail" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); display: flex; align-items: center; justify-content: center; font-size: 48px;">📚</div>`
                 }
-                ${isNew ? '<span class="badge badge-accent" style="position: absolute; top: 12px; right: 12px;">Novo</span>' : ''}
-                ${enrolled ? '<span class="badge badge-success" style="position: absolute; top: 12px; left: 12px;"><i data-lucide="check-circle" style="width: 14px; height: 14px;"></i> Matriculado</span>' : ''}
+                ${isNew ? '<span class="badge badge-accent" style="position: absolute; top: 16px; right: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"><i data-lucide="sparkles" style="width: 12px; height: 12px;"></i> Novo</span>' : ''}
+                ${enrolled ? '<span class="badge badge-success" style="position: absolute; top: 16px; left: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"><i data-lucide="check-circle" style="width: 12px; height: 12px;"></i> Matriculado</span>' : ''}
             </div>
             <div class="course-content">
                 <h3 class="course-title">${course.title}</h3>
-                <p class="course-description">${course.description || 'Sem descrição'}</p>
+                <p class="course-description">${course.description || 'Aprenda com especialistas e transforme sua carreira jurídica'}</p>
                 <div class="course-meta">
                     <span class="course-meta-item">
                         <i data-lucide="book-open" style="width: 14px; height: 14px;"></i>
@@ -117,14 +117,18 @@ function createCourseCard(course) {
                         <i data-lucide="clock" style="width: 14px; height: 14px;"></i>
                         ${formatDuration(course.duration_minutes)}
                     </span>
+                    <span class="course-meta-item">
+                        <i data-lucide="star" style="width: 14px; height: 14px; fill: currentColor;"></i>
+                        4.9
+                    </span>
                 </div>
                 <div class="course-footer">
                     <div class="course-instructor">
                         <div class="instructor-avatar">${course.instructor?.charAt(0).toUpperCase() || 'A'}</div>
                         <span>${course.instructor || 'Academia Jurídica'}</span>
                     </div>
-                    <button class="btn btn-primary btn-sm" onclick="event.stopPropagation(); handleCourseAction('${course.id}')">
-                        ${enrolled ? '<i data-lucide="play-circle"></i> Continuar' : '<i data-lucide="arrow-right"></i> Iniciar'}
+                    <button class="btn btn-primary btn-sm" onclick="event.stopPropagation(); handleCourseAction('${course.id}')" style="box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);">
+                        ${enrolled ? '<i data-lucide="play-circle" style="width: 16px; height: 16px;"></i> Continuar' : '<i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i> Iniciar'}
                     </button>
                 </div>
             </div>
@@ -162,26 +166,36 @@ function createProgressCard(enrollment) {
 
     return `
         <div class="course-card" data-course-id="${course.id}" onclick="handleCourseAction('${course.id}')">
-            <div style="position: relative; overflow: hidden; border-radius: 16px 16px 0 0;">
+            <div style="position: relative; overflow: hidden;">
                 ${course.thumbnail_url
-                    ? `<img src="${course.thumbnail_url}" alt="${course.title}" class="course-thumbnail" style="width: 100%; height: 200px; object-fit: cover;">`
-                    : `<div class="course-thumbnail" style="width: 100%; height: 200px; background: linear-gradient(135deg, var(--primary-color), var(--primary-light));"></div>`
+                    ? `<img src="${course.thumbnail_url}" alt="${course.title}" class="course-thumbnail">`
+                    : `<div class="course-thumbnail" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); display: flex; align-items: center; justify-content: center; font-size: 48px;">📚</div>`
                 }
-                <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 16px; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                        <span style="color: white; font-size: 12px; font-weight: 600;">${progress}% concluído</span>
-                        <span class="badge badge-warning" style="background: rgba(255,212,59,0.2); color: #ffd43b;">Em andamento</span>
+                <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 20px; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 70%, transparent 100%);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                        <span style="color: white; font-size: 14px; font-weight: 700;">${progress}% concluído</span>
+                        <span class="badge badge-warning" style="background: rgba(245, 158, 11, 0.2); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3);"><i data-lucide="zap" style="width: 12px; height: 12px;"></i> Em andamento</span>
                     </div>
-                    <div class="progress-bar">
+                    <div class="progress-bar" style="height: 8px;">
                         <div class="progress-fill" style="width: ${progress}%"></div>
                     </div>
                 </div>
             </div>
             <div class="course-content">
                 <h3 class="course-title">${course.title}</h3>
-                <p class="course-description">${course.description || 'Sem descrição'}</p>
-                <button class="btn btn-primary" style="width: 100%; margin-top: 12px;" onclick="event.stopPropagation(); handleCourseAction('${course.id}')">
-                    <i data-lucide="play-circle"></i>
+                <p class="course-description">${course.description || 'Continue sua jornada de aprendizado'}</p>
+                <div class="course-meta" style="margin-bottom: 16px;">
+                    <span class="course-meta-item">
+                        <i data-lucide="book-open" style="width: 14px; height: 14px;"></i>
+                        ${course.modules_count || 0} módulos
+                    </span>
+                    <span class="course-meta-item">
+                        <i data-lucide="clock" style="width: 14px; height: 14px;"></i>
+                        ${formatDuration(course.duration_minutes)}
+                    </span>
+                </div>
+                <button class="btn btn-primary" style="width: 100%; justify-content: center; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);" onclick="event.stopPropagation(); handleCourseAction('${course.id}')">
+                    <i data-lucide="play-circle" style="width: 18px; height: 18px;"></i>
                     Continuar Assistindo
                 </button>
             </div>
