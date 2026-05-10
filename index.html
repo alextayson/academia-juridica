@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Preview Netflix Style - Academia Jurídica</title>
+<title>Academia Jurídica</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -23,17 +23,15 @@ body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hid
 .icon-btn{background:none;border:none;color:#fff;cursor:pointer;font-size:20px}
 .avatar{width:32px;height:32px;border-radius:4px;background:linear-gradient(135deg,#e50914,#b20710);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
 
-/* Hero Banner */
+/* Hero */
 .hero{position:relative;height:85vh;min-height:600px;display:flex;align-items:flex-end;padding:0 48px 80px;overflow:hidden}
 .hero-bg{position:absolute;inset:0;background:
   linear-gradient(90deg,#0a0a0a 0%,rgba(10,10,10,0.7) 40%,transparent 70%),
   linear-gradient(0deg,#0a0a0a 0%,transparent 50%),
-  radial-gradient(ellipse at top right,#2d1b4e,#0a0a0a);
-  z-index:0}
+  radial-gradient(ellipse at top right,#2d1b4e,#0a0a0a);z-index:0}
 .hero-bg::before{content:'';position:absolute;inset:0;background-image:
   radial-gradient(circle at 70% 40%,rgba(229,9,20,0.2) 0%,transparent 50%),
   radial-gradient(circle at 80% 70%,rgba(139,92,246,0.15) 0%,transparent 50%)}
-
 .hero-content{position:relative;z-index:1;max-width:600px}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:4px 12px;background:rgba(229,9,20,0.15);border:1px solid rgba(229,9,20,0.3);border-radius:4px;font-size:12px;font-weight:700;color:#e50914;text-transform:uppercase;letter-spacing:2px;margin-bottom:16px}
 .hero-title{font-size:72px;font-weight:900;line-height:1;letter-spacing:-3px;margin-bottom:16px;text-shadow:2px 2px 20px rgba(0,0,0,0.5)}
@@ -52,44 +50,83 @@ body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hid
 /* Rows */
 .rows{position:relative;z-index:2;margin-top:-120px;padding-bottom:60px}
 .row{margin-bottom:48px;padding:0 0 0 48px}
-.row-title{font-size:22px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px}
-.row-title::after{content:'Ver tudo ›';font-size:13px;color:#54b9c5;font-weight:600;opacity:0;transition:opacity 0.3s;margin-left:12px}
-.row:hover .row-title::after{opacity:1}
+.row-title{font-size:22px;font-weight:700;margin-bottom:16px}
+.row-scroller{display:flex;gap:12px;overflow-x:auto;padding:8px 48px 24px 0;scroll-snap-type:x mandatory}
 
-.row-scroller{display:flex;gap:8px;overflow-x:auto;padding:8px 48px 16px 0;scroll-snap-type:x mandatory}
-.card{flex:0 0 280px;height:160px;border-radius:4px;overflow:hidden;cursor:pointer;position:relative;scroll-snap-align:start;transition:transform 0.3s,box-shadow 0.3s;background-size:cover;background-position:center}
-.card:hover{transform:scale(1.08);z-index:10;box-shadow:0 20px 40px rgba(0,0,0,0.8)}
+/* VERTICAL POSTER CARD (Netflix poster mode) */
+.poster{flex:0 0 220px;height:330px;border-radius:6px;overflow:hidden;cursor:pointer;position:relative;scroll-snap-align:start;transition:transform 0.3s,box-shadow 0.3s;background-size:cover;background-position:center;background-color:#1a1a1a}
+.poster:hover{transform:scale(1.05);z-index:10;box-shadow:0 25px 50px rgba(0,0,0,0.9)}
 
-/* Card colors - gradientes únicos por card */
-.card-1{background:linear-gradient(135deg,#e50914 0%,#7f0a11 100%)}
-.card-2{background:linear-gradient(135deg,#1e3a8a 0%,#1e1b4b 100%)}
-.card-3{background:linear-gradient(135deg,#8b5cf6 0%,#4c1d95 100%)}
-.card-4{background:linear-gradient(135deg,#059669 0%,#064e3b 100%)}
-.card-5{background:linear-gradient(135deg,#d97706 0%,#78350f 100%)}
-.card-6{background:linear-gradient(135deg,#be185d 0%,#831843 100%)}
-.card-7{background:linear-gradient(135deg,#0891b2 0%,#164e63 100%)}
-.card-8{background:linear-gradient(135deg,#7c3aed 0%,#4c1d95 100%)}
+/* Poster covers - gradientes coloridos por categoria */
+.cover-civil{background:linear-gradient(135deg,#e50914 0%,#7f0a11 70%,#3d0508 100%)}
+.cover-tributario{background:linear-gradient(135deg,#8b5cf6 0%,#4c1d95 70%,#1e0d4d 100%)}
+.cover-trabalhista{background:linear-gradient(135deg,#059669 0%,#064e3b 70%,#022c1e 100%)}
+.cover-empresarial{background:linear-gradient(135deg,#1e3a8a 0%,#1e1b4b 70%,#0c0a2e 100%)}
+.cover-penal{background:linear-gradient(135deg,#d97706 0%,#78350f 70%,#3d1c08 100%)}
+.cover-familia{background:linear-gradient(135deg,#be185d 0%,#831843 70%,#4d0f28 100%)}
+.cover-digital{background:linear-gradient(135deg,#0891b2 0%,#164e63 70%,#0a2e3a 100%)}
+.cover-constitucional{background:linear-gradient(135deg,#7c3aed 0%,#4c1d95 70%,#2d1063 100%)}
+.cover-imobiliario{background:linear-gradient(135deg,#0d9488 0%,#134e4a 70%,#062b29 100%)}
+.cover-medico{background:linear-gradient(135deg,#dc2626 0%,#7f1d1d 70%,#3d0d0d 100%)}
 
-.card-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,0.9) 0%,transparent 60%);padding:16px;display:flex;flex-direction:column;justify-content:flex-end;opacity:0;transition:opacity 0.3s}
-.card:hover .card-overlay{opacity:1}
-.card-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:48px;opacity:0.3}
-.card-title{font-size:14px;font-weight:700;margin-bottom:4px}
-.card-meta{display:flex;gap:8px;font-size:11px;color:#b3b3b3;margin-bottom:8px}
-.card-match{color:#46d369;font-weight:700}
-.card-actions{display:flex;gap:6px}
-.card-btn{width:28px;height:28px;border-radius:50%;background:rgba(0,0,0,0.7);border:1px solid #fff;color:#fff;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center}
-.card-btn.play{background:#fff;color:#000}
+/* Custom uploaded image */
+.poster.custom-image{background-size:cover}
 
-/* Progress card */
-.card.continue{background:linear-gradient(135deg,#1f2937 0%,#111827 100%)}
-.card.continue .progress{position:absolute;bottom:0;left:0;right:0;height:3px;background:rgba(255,255,255,0.2)}
-.card.continue .progress-fill{height:100%;background:#e50914}
-.card.continue .card-overlay{opacity:1;background:linear-gradient(0deg,rgba(0,0,0,0.9) 0%,transparent 40%)}
+/* Decorative elements on cover */
+.poster-cover{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:20px}
+.poster-cover.has-image{background:linear-gradient(0deg,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.3) 50%,rgba(0,0,0,0.5) 100%)}
+.poster-icon{font-size:64px;opacity:0.4;align-self:flex-end;line-height:1}
+.poster-info{position:relative;z-index:1}
+.poster-tag{display:inline-block;padding:3px 10px;background:rgba(0,0,0,0.6);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.2);border-radius:3px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
+.poster-tag.new{background:#e50914;border-color:#e50914}
+.poster-tag.hot{background:rgba(245,158,11,0.9);border-color:#f59e0b;color:#000}
+.poster-title{font-size:18px;font-weight:900;line-height:1.1;margin-bottom:6px;letter-spacing:-0.5px;text-shadow:2px 2px 8px rgba(0,0,0,0.8)}
+.poster-meta{font-size:11px;color:rgba(255,255,255,0.8);font-weight:500;text-shadow:1px 1px 4px rgba(0,0,0,0.8)}
 
-/* Top 10 style */
-.top-card{flex:0 0 340px;display:flex;align-items:center;padding-left:60px;position:relative}
-.top-card .rank{position:absolute;left:-20px;bottom:-20px;font-size:240px;font-weight:900;color:#0a0a0a;-webkit-text-stroke:3px #b3b3b3;line-height:0.8;font-family:Inter}
-.top-card .card{flex:0 0 200px;height:280px}
+/* Hover overlay with actions */
+.poster-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,0.95) 0%,rgba(0,0,0,0.4) 60%,transparent 100%);padding:16px;display:flex;flex-direction:column;justify-content:flex-end;opacity:0;transition:opacity 0.3s;gap:8px}
+.poster:hover .poster-overlay{opacity:1}
+.poster-actions{display:flex;gap:6px;margin-top:8px}
+.action-btn{width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,0.7);border:1.5px solid rgba(255,255,255,0.6);color:#fff;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;transition:all 0.2s}
+.action-btn:hover{border-color:#fff;background:rgba(255,255,255,0.2)}
+.action-btn.play{background:#fff;color:#000;border-color:#fff}
+.action-btn.edit{margin-left:auto;background:rgba(229,9,20,0.9);border-color:#e50914}
+.action-btn.edit:hover{background:#e50914}
+
+/* Match badge */
+.match-badge{color:#46d369;font-weight:700;font-size:12px;margin-bottom:4px}
+
+/* Progress bar */
+.poster-progress{position:absolute;bottom:0;left:0;right:0;height:3px;background:rgba(255,255,255,0.2);z-index:2}
+.poster-progress-fill{height:100%;background:#e50914}
+
+/* Modal */
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:1000;align-items:center;justify-content:center;padding:20px}
+.modal.open{display:flex}
+.modal-content{background:#181818;border-radius:8px;padding:32px;max-width:500px;width:100%;border:1px solid rgba(255,255,255,0.1)}
+.modal-title{font-size:24px;font-weight:700;margin-bottom:8px}
+.modal-subtitle{color:#b3b3b3;font-size:14px;margin-bottom:24px}
+.upload-area{border:2px dashed rgba(255,255,255,0.2);border-radius:8px;padding:40px 20px;text-align:center;cursor:pointer;transition:all 0.2s;margin-bottom:16px}
+.upload-area:hover{border-color:#e50914;background:rgba(229,9,20,0.05)}
+.upload-area input{display:none}
+.upload-icon{font-size:48px;margin-bottom:12px;opacity:0.6}
+.upload-text{font-size:14px;color:#b3b3b3}
+.preset-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:24px}
+.preset{aspect-ratio:2/3;border-radius:4px;cursor:pointer;border:2px solid transparent;transition:all 0.2s}
+.preset:hover{transform:scale(1.05);border-color:#fff}
+.preset.selected{border-color:#e50914}
+.modal-buttons{display:flex;gap:12px;justify-content:flex-end}
+.modal-btn{padding:10px 20px;border:none;border-radius:4px;font-size:14px;font-weight:600;cursor:pointer}
+.modal-btn-cancel{background:rgba(255,255,255,0.1);color:#fff}
+.modal-btn-save{background:#e50914;color:#fff}
+.modal-close{position:absolute;top:16px;right:16px;background:none;border:none;color:#fff;font-size:24px;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%}
+.modal-close:hover{background:rgba(255,255,255,0.1)}
+
+/* Edit mode toggle */
+.edit-mode-banner{position:fixed;bottom:24px;right:24px;background:rgba(229,9,20,0.95);padding:12px 20px;border-radius:50px;font-size:13px;font-weight:600;cursor:pointer;z-index:99;box-shadow:0 10px 30px rgba(0,0,0,0.5);display:flex;align-items:center;gap:8px;transition:all 0.2s}
+.edit-mode-banner:hover{transform:translateY(-2px)}
+body.edit-mode .poster .action-btn.edit{display:flex !important}
+.action-btn.edit{display:none}
 
 @media(max-width:768px){
   .header{padding:12px 16px}
@@ -98,6 +135,8 @@ body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hid
   .hero-desc{font-size:14px}
   .rows,.row{padding-left:16px}
   .nav-links{display:none}
+  .poster{flex:0 0 150px;height:225px}
+  .poster-title{font-size:14px}
 }
 </style>
 </head>
@@ -121,7 +160,7 @@ body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hid
   </div>
 </header>
 
-<!-- Hero Banner -->
+<!-- Hero -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
@@ -134,7 +173,7 @@ body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hid
       <span class="year">32h • 10 módulos</span>
     </div>
     <p class="hero-desc">
-      Domine o planejamento tributário moderno com casos reais, jurisprudência atualizada do CARF e estratégias que advogados de grandes escritórios usam hoje.
+      Domine o planejamento tributário moderno com casos reais, jurisprudência atualizada do CARF e estratégias de grandes escritórios.
     </p>
     <div class="hero-buttons">
       <button class="btn btn-play">▶ Assistir agora</button>
@@ -143,170 +182,276 @@ body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hid
   </div>
 </section>
 
-<!-- Rows -->
+<!-- Rows com posters verticais -->
 <div class="rows">
 
   <!-- Continue Watching -->
   <div class="row">
     <h2 class="row-title">Continue assistindo</h2>
-    <div class="row-scroller">
-      <div class="card continue">
-        <div class="card-icon">⚖️</div>
-        <div class="progress"><div class="progress-fill" style="width:65%"></div></div>
-        <div class="card-overlay">
-          <div class="card-title">Direito Civil Avançado</div>
-          <div class="card-meta"><span>Módulo 8 de 12</span></div>
-        </div>
-      </div>
-      <div class="card continue">
-        <div class="card-icon">📜</div>
-        <div class="progress"><div class="progress-fill" style="width:30%"></div></div>
-        <div class="card-overlay">
-          <div class="card-title">Trabalhista 4.0</div>
-          <div class="card-meta"><span>Módulo 3 de 8</span></div>
-        </div>
-      </div>
-      <div class="card continue">
-        <div class="card-icon">🏛️</div>
-        <div class="progress"><div class="progress-fill" style="width:80%"></div></div>
-        <div class="card-overlay">
-          <div class="card-title">Constitucional na Prática</div>
-          <div class="card-meta"><span>Módulo 9 de 11</span></div>
-        </div>
-      </div>
-    </div>
+    <div class="row-scroller" id="row-continue"></div>
   </div>
 
   <!-- Trending -->
   <div class="row">
     <h2 class="row-title">🔥 Em alta esta semana</h2>
-    <div class="row-scroller">
-      <div class="card card-1">
-        <div class="card-icon">⚖️</div>
-        <div class="card-overlay">
-          <div class="card-title">Direito Civil Avançado</div>
-          <div class="card-meta"><span class="card-match">98% match</span><span>40h</span></div>
-          <div class="card-actions">
-            <button class="card-btn play">▶</button>
-            <button class="card-btn">+</button>
-            <button class="card-btn">👍</button>
-          </div>
-        </div>
-      </div>
-      <div class="card card-2">
-        <div class="card-icon">📘</div>
-        <div class="card-overlay">
-          <div class="card-title">Processo Civil Moderno</div>
-          <div class="card-meta"><span class="card-match">95% match</span><span>28h</span></div>
-          <div class="card-actions">
-            <button class="card-btn play">▶</button>
-            <button class="card-btn">+</button>
-          </div>
-        </div>
-      </div>
-      <div class="card card-3">
-        <div class="card-icon">🏛️</div>
-        <div class="card-overlay">
-          <div class="card-title">Tributário Estratégico</div>
-          <div class="card-meta"><span class="card-match">92% match</span><span>32h</span></div>
-          <div class="card-actions">
-            <button class="card-btn play">▶</button>
-            <button class="card-btn">+</button>
-          </div>
-        </div>
-      </div>
-      <div class="card card-4">
-        <div class="card-icon">💼</div>
-        <div class="card-overlay">
-          <div class="card-title">Empresarial para Sócios</div>
-          <div class="card-meta"><span class="card-match">89% match</span><span>24h</span></div>
-          <div class="card-actions">
-            <button class="card-btn play">▶</button>
-            <button class="card-btn">+</button>
-          </div>
-        </div>
-      </div>
-      <div class="card card-5">
-        <div class="card-icon">🔨</div>
-        <div class="card-overlay">
-          <div class="card-title">Penal Econômico</div>
-          <div class="card-meta"><span class="card-match">87% match</span><span>36h</span></div>
-          <div class="card-actions">
-            <button class="card-btn play">▶</button>
-            <button class="card-btn">+</button>
-          </div>
-        </div>
-      </div>
-      <div class="card card-6">
-        <div class="card-icon">👥</div>
-        <div class="card-overlay">
-          <div class="card-title">Família e Sucessões</div>
-          <div class="card-meta"><span class="card-match">94% match</span><span>22h</span></div>
-          <div class="card-actions">
-            <button class="card-btn play">▶</button>
-            <button class="card-btn">+</button>
-          </div>
-        </div>
-      </div>
-      <div class="card card-7">
-        <div class="card-icon">🌐</div>
-        <div class="card-overlay">
-          <div class="card-title">LGPD e Direito Digital</div>
-          <div class="card-meta"><span class="card-match">91% match</span><span>18h</span></div>
-          <div class="card-actions">
-            <button class="card-btn play">▶</button>
-            <button class="card-btn">+</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div class="row-scroller" id="row-trending"></div>
   </div>
 
   <!-- New Releases -->
   <div class="row">
     <h2 class="row-title">✨ Novos lançamentos</h2>
-    <div class="row-scroller">
-      <div class="card card-8">
-        <div class="card-icon">📊</div>
-        <div class="card-overlay">
-          <div class="card-title">IA no Direito</div>
-          <div class="card-meta"><span style="color:#e50914;font-weight:700">NOVO</span><span>16h</span></div>
-        </div>
-      </div>
-      <div class="card card-3">
-        <div class="card-icon">⚡</div>
-        <div class="card-overlay">
-          <div class="card-title">Advocacia 4.0</div>
-          <div class="card-meta"><span style="color:#e50914;font-weight:700">NOVO</span><span>20h</span></div>
-        </div>
-      </div>
-      <div class="card card-5">
-        <div class="card-icon">🏥</div>
-        <div class="card-overlay">
-          <div class="card-title">Direito Médico</div>
-          <div class="card-meta"><span style="color:#e50914;font-weight:700">NOVO</span><span>26h</span></div>
-        </div>
-      </div>
-      <div class="card card-2">
-        <div class="card-icon">🏢</div>
-        <div class="card-overlay">
-          <div class="card-title">Imobiliário Moderno</div>
-          <div class="card-meta"><span style="color:#e50914;font-weight:700">NOVO</span><span>30h</span></div>
-        </div>
-      </div>
-      <div class="card card-6">
-        <div class="card-icon">🎓</div>
-        <div class="card-overlay">
-          <div class="card-title">OAB Premium</div>
-          <div class="card-meta"><span style="color:#e50914;font-weight:700">NOVO</span><span>60h</span></div>
-        </div>
-      </div>
-    </div>
+    <div class="row-scroller" id="row-new"></div>
+  </div>
+
+  <!-- Categorias -->
+  <div class="row">
+    <h2 class="row-title">📚 Por categoria</h2>
+    <div class="row-scroller" id="row-categorias"></div>
   </div>
 
 </div>
 
+<!-- Modal de edição de capa -->
+<div class="modal" id="coverModal">
+  <div class="modal-content" style="position:relative">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <h2 class="modal-title">Personalizar capa</h2>
+    <p class="modal-subtitle">Escolha um estilo predefinido ou faça upload da sua imagem</p>
+
+    <label class="upload-area" for="fileUpload">
+      <div class="upload-icon">📤</div>
+      <div class="upload-text"><strong>Clique para fazer upload</strong><br>PNG, JPG até 5MB</div>
+      <input type="file" id="fileUpload" accept="image/*">
+    </label>
+
+    <div style="font-size:12px;color:#b3b3b3;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;font-weight:600">Ou escolha um estilo</div>
+    <div class="preset-grid" id="presetGrid"></div>
+
+    <div class="modal-buttons">
+      <button class="modal-btn modal-btn-cancel" onclick="closeModal()">Cancelar</button>
+      <button class="modal-btn modal-btn-save" onclick="saveCover()">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Edit mode toggle -->
+<div class="edit-mode-banner" onclick="toggleEditMode()">
+  <span id="editIcon">✏️</span>
+  <span id="editLabel">Editar capas</span>
+</div>
+
 <script>
+// Dados dos cursos
+const courses = {
+  continue:[
+    {id:1,title:'Direito Civil Avançado',cover:'cover-civil',icon:'⚖️',meta:'Módulo 8 de 12',progress:65},
+    {id:2,title:'Trabalhista 4.0',cover:'cover-trabalhista',icon:'📜',meta:'Módulo 3 de 8',progress:30},
+    {id:3,title:'Constitucional na Prática',cover:'cover-constitucional',icon:'🏛️',meta:'Módulo 9 de 11',progress:80}
+  ],
+  trending:[
+    {id:4,title:'Direito Civil Avançado',cover:'cover-civil',icon:'⚖️',match:98,duration:'40h',tag:'POPULAR'},
+    {id:5,title:'Processo Civil Moderno',cover:'cover-empresarial',icon:'📘',match:95,duration:'28h'},
+    {id:6,title:'Tributário Estratégico',cover:'cover-tributario',icon:'🏛️',match:92,duration:'32h',tag:'HOT'},
+    {id:7,title:'Empresarial para Sócios',cover:'cover-empresarial',icon:'💼',match:89,duration:'24h'},
+    {id:8,title:'Penal Econômico',cover:'cover-penal',icon:'🔨',match:87,duration:'36h'},
+    {id:9,title:'Família e Sucessões',cover:'cover-familia',icon:'👥',match:94,duration:'22h'},
+    {id:10,title:'LGPD e Direito Digital',cover:'cover-digital',icon:'🌐',match:91,duration:'18h'}
+  ],
+  new:[
+    {id:11,title:'IA no Direito',cover:'cover-tributario',icon:'🤖',duration:'16h',tag:'NEW'},
+    {id:12,title:'Advocacia 4.0',cover:'cover-constitucional',icon:'⚡',duration:'20h',tag:'NEW'},
+    {id:13,title:'Direito Médico',cover:'cover-medico',icon:'🏥',duration:'26h',tag:'NEW'},
+    {id:14,title:'Imobiliário Moderno',cover:'cover-imobiliario',icon:'🏢',duration:'30h',tag:'NEW'},
+    {id:15,title:'OAB Premium',cover:'cover-civil',icon:'🎓',duration:'60h',tag:'NEW'}
+  ],
+  categorias:[
+    {id:16,title:'Direito Civil',cover:'cover-civil',icon:'⚖️',meta:'12 cursos'},
+    {id:17,title:'Tributário',cover:'cover-tributario',icon:'🏛️',meta:'8 cursos'},
+    {id:18,title:'Trabalhista',cover:'cover-trabalhista',icon:'📜',meta:'15 cursos'},
+    {id:19,title:'Empresarial',cover:'cover-empresarial',icon:'💼',meta:'10 cursos'},
+    {id:20,title:'Penal',cover:'cover-penal',icon:'🔨',meta:'7 cursos'},
+    {id:21,title:'Família',cover:'cover-familia',icon:'👥',meta:'9 cursos'},
+    {id:22,title:'Digital/LGPD',cover:'cover-digital',icon:'🌐',meta:'6 cursos'}
+  ]
+};
+
+const presets = ['cover-civil','cover-tributario','cover-trabalhista','cover-empresarial','cover-penal','cover-familia','cover-digital','cover-constitucional','cover-imobiliario','cover-medico'];
+
+// Carregar capas salvas do localStorage
+const savedCovers = JSON.parse(localStorage.getItem('courseCovers') || '{}');
+
+function getPosterCover(course){
+  const saved = savedCovers[course.id];
+  if(saved && saved.type === 'image') return `style="background-image:url('${saved.value}')" class="custom-image"`;
+  if(saved && saved.type === 'preset') return `class="${saved.value}"`;
+  return `class="${course.cover}"`;
+}
+
+function hasImage(course){
+  const saved = savedCovers[course.id];
+  return saved && saved.type === 'image';
+}
+
+function renderPoster(course, options = {}){
+  const cover = getPosterCover(course);
+  const showProgress = options.showProgress;
+  const tagClass = course.tag === 'NEW' ? 'new' : course.tag === 'HOT' ? 'hot' : '';
+  const tagLabel = course.tag === 'NEW' ? 'NOVO' : course.tag === 'HOT' ? '🔥 EM ALTA' : course.tag === 'POPULAR' ? '⭐ POPULAR' : '';
+
+  return `
+    <div class="poster" ${cover.includes('style')?cover:'class="poster '+course.cover.replace('cover-','cover-')+'"'} data-course-id="${course.id}" onclick="openCourse(${course.id})">
+      <div class="poster-cover ${hasImage(course)?'has-image':''}">
+        <div class="poster-icon">${course.icon}</div>
+        <div class="poster-info">
+          ${tagLabel?`<span class="poster-tag ${tagClass}">${tagLabel}</span>`:''}
+          ${course.match?`<div class="match-badge">${course.match}% match</div>`:''}
+          <div class="poster-title">${course.title}</div>
+          <div class="poster-meta">${course.meta || course.duration || ''}</div>
+        </div>
+      </div>
+      <div class="poster-overlay">
+        <div class="poster-title" style="text-shadow:none">${course.title}</div>
+        ${course.match?`<div class="match-badge">${course.match}% match</div>`:''}
+        <div class="poster-meta" style="text-shadow:none">${course.meta || course.duration || ''}</div>
+        <div class="poster-actions">
+          <button class="action-btn play" onclick="event.stopPropagation();playCourse(${course.id})">▶</button>
+          <button class="action-btn" onclick="event.stopPropagation();addToList(${course.id})" title="Adicionar à lista">+</button>
+          <button class="action-btn" onclick="event.stopPropagation();likeCourse(${course.id})" title="Curtir">👍</button>
+          <button class="action-btn edit" onclick="event.stopPropagation();editCover(${course.id})" title="Editar capa">✏️</button>
+        </div>
+      </div>
+      ${showProgress?`<div class="poster-progress"><div class="poster-progress-fill" style="width:${course.progress}%"></div></div>`:''}
+    </div>
+  `;
+}
+
+// Render rows
+function renderRow(rowId, courses, options = {}){
+  const row = document.getElementById(rowId);
+  if(!row) return;
+  row.innerHTML = courses.map(c => {
+    let posterClass = '';
+    let posterStyle = '';
+    const saved = savedCovers[c.id];
+    if(saved && saved.type === 'image'){
+      posterStyle = `style="background-image:url('${saved.value}')"`;
+      posterClass = 'custom-image';
+    } else if(saved && saved.type === 'preset'){
+      posterClass = saved.value;
+    } else {
+      posterClass = c.cover;
+    }
+
+    const tagClass = c.tag === 'NEW' ? 'new' : c.tag === 'HOT' ? 'hot' : '';
+    const tagLabel = c.tag === 'NEW' ? 'NOVO' : c.tag === 'HOT' ? '🔥 EM ALTA' : c.tag === 'POPULAR' ? '⭐ POPULAR' : '';
+    const hasImg = saved && saved.type === 'image';
+
+    return `
+      <div class="poster ${posterClass}" ${posterStyle} data-course-id="${c.id}" onclick="openCourse(${c.id})">
+        <div class="poster-cover ${hasImg?'has-image':''}">
+          ${!hasImg?`<div class="poster-icon">${c.icon}</div>`:'<div></div>'}
+          <div class="poster-info">
+            ${tagLabel?`<span class="poster-tag ${tagClass}">${tagLabel}</span>`:''}
+            ${c.match?`<div class="match-badge">${c.match}% match</div>`:''}
+            <div class="poster-title">${c.title}</div>
+            <div class="poster-meta">${c.meta || c.duration || ''}</div>
+          </div>
+        </div>
+        <div class="poster-overlay">
+          <div class="poster-actions">
+            <button class="action-btn play" onclick="event.stopPropagation();playCourse(${c.id})">▶</button>
+            <button class="action-btn" onclick="event.stopPropagation()" title="Adicionar">+</button>
+            <button class="action-btn" onclick="event.stopPropagation()" title="Curtir">👍</button>
+            <button class="action-btn edit" onclick="event.stopPropagation();editCover(${c.id})" title="Editar capa">✏️</button>
+          </div>
+        </div>
+        ${options.showProgress?`<div class="poster-progress"><div class="poster-progress-fill" style="width:${c.progress}%"></div></div>`:''}
+      </div>
+    `;
+  }).join('');
+}
+
+renderRow('row-continue', courses.continue, {showProgress:true});
+renderRow('row-trending', courses.trending);
+renderRow('row-new', courses.new);
+renderRow('row-categorias', courses.categorias);
+
+// Modal de edição de capa
+let currentEditingId = null;
+let selectedPreset = null;
+let uploadedImage = null;
+
+function editCover(courseId){
+  currentEditingId = courseId;
+  selectedPreset = null;
+  uploadedImage = null;
+
+  // Render presets
+  const grid = document.getElementById('presetGrid');
+  grid.innerHTML = presets.map(p => `<div class="preset ${p}" onclick="selectPreset('${p}',this)"></div>`).join('');
+
+  document.getElementById('coverModal').classList.add('open');
+}
+
+function selectPreset(preset, el){
+  selectedPreset = preset;
+  uploadedImage = null;
+  document.querySelectorAll('.preset').forEach(p => p.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+document.getElementById('fileUpload').addEventListener('change', e => {
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    uploadedImage = e.target.result;
+    selectedPreset = null;
+    document.querySelectorAll('.preset').forEach(p => p.classList.remove('selected'));
+  };
+  reader.readAsDataURL(file);
+});
+
+function saveCover(){
+  if(!currentEditingId) return;
+
+  if(uploadedImage){
+    savedCovers[currentEditingId] = {type:'image', value:uploadedImage};
+  } else if(selectedPreset){
+    savedCovers[currentEditingId] = {type:'preset', value:selectedPreset};
+  }
+
+  localStorage.setItem('courseCovers', JSON.stringify(savedCovers));
+  closeModal();
+
+  // Re-render todos os rows
+  renderRow('row-continue', courses.continue, {showProgress:true});
+  renderRow('row-trending', courses.trending);
+  renderRow('row-new', courses.new);
+  renderRow('row-categorias', courses.categorias);
+}
+
+function closeModal(){
+  document.getElementById('coverModal').classList.remove('open');
+  currentEditingId = null;
+  document.getElementById('fileUpload').value = '';
+}
+
+// Edit mode
+function toggleEditMode(){
+  document.body.classList.toggle('edit-mode');
+  const isEditing = document.body.classList.contains('edit-mode');
+  document.getElementById('editIcon').textContent = isEditing ? '✓' : '✏️';
+  document.getElementById('editLabel').textContent = isEditing ? 'Sair do modo edição' : 'Editar capas';
+}
+
+// Helpers
+function openCourse(id){console.log('Abrir curso',id)}
+function playCourse(id){console.log('Play',id)}
+function addToList(id){console.log('Add',id)}
+function likeCourse(id){console.log('Like',id)}
+
+// Header scroll
 window.addEventListener('scroll',()=>{
   document.getElementById('header').classList.toggle('scrolled',window.scrollY>50);
 });
