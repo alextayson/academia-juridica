@@ -2,434 +2,414 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Academia Jurídica</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Academia Jurídica — Educação de elite para advogados</title>
+<meta name="description" content="A plataforma de cursos jurídicos preferida por advogados que querem se destacar. Conteúdo atualizado, professores referência, certificação OAB.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hidden}
-::-webkit-scrollbar{height:6px;width:6px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.2);border-radius:3px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hidden;line-height:1.6}
+::-webkit-scrollbar{height:8px;width:8px}
+::-webkit-scrollbar-track{background:#0a0a0a}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.15);border-radius:4px}
 
-/* Header */
-.header{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 48px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(180deg,rgba(0,0,0,0.9) 0%,transparent 100%);transition:background 0.3s}
-.header.scrolled{background:#0a0a0a}
-.logo{font-size:28px;font-weight:900;color:#e50914;letter-spacing:-1px}
-.nav-links{display:flex;gap:24px;align-items:center;margin-left:48px;flex:1}
-.nav-links a{color:#e5e5e5;text-decoration:none;font-size:14px;font-weight:500;transition:color 0.2s}
-.nav-links a:hover{color:#b3b3b3}
-.nav-links a.active{font-weight:700;color:#fff}
-.header-right{display:flex;gap:20px;align-items:center}
-.icon-btn{background:none;border:none;color:#fff;cursor:pointer;font-size:20px}
-.avatar{width:32px;height:32px;border-radius:4px;background:linear-gradient(135deg,#e50914,#b20710);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
 
-/* Hero */
-.hero{position:relative;height:85vh;min-height:600px;display:flex;align-items:flex-end;padding:0 48px 80px;overflow:hidden}
-.hero-bg{position:absolute;inset:0;background:
-  linear-gradient(90deg,#0a0a0a 0%,rgba(10,10,10,0.7) 40%,transparent 70%),
-  linear-gradient(0deg,#0a0a0a 0%,transparent 50%),
-  radial-gradient(ellipse at top right,#2d1b4e,#0a0a0a);z-index:0}
+/* ========= HEADER ========= */
+.header{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(20px);background:rgba(10,10,10,0.7);border-bottom:1px solid rgba(255,255,255,0.05);transition:background 0.3s}
+.header.scrolled{background:rgba(10,10,10,0.95)}
+.nav{max-width:1400px;margin:0 auto;padding:18px 32px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;letter-spacing:-0.5px;background:linear-gradient(135deg,#fff 30%,#c4a875);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{color:rgba(255,255,255,0.7);font-size:14px;font-weight:500;transition:color 0.2s}
+.nav-links a:hover{color:#fff}
+.btn-login{padding:10px 22px;background:#fff;color:#000;border-radius:8px;font-weight:600;font-size:14px;transition:transform 0.2s}
+.btn-login:hover{transform:scale(1.05)}
+
+/* ========= HERO ========= */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:120px 32px 80px;text-align:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0;background:
+  radial-gradient(ellipse at 30% 20%,rgba(196,168,117,0.15) 0%,transparent 50%),
+  radial-gradient(ellipse at 70% 80%,rgba(139,92,246,0.1) 0%,transparent 50%),
+  #0a0a0a}
 .hero-bg::before{content:'';position:absolute;inset:0;background-image:
-  radial-gradient(circle at 70% 40%,rgba(229,9,20,0.2) 0%,transparent 50%),
-  radial-gradient(circle at 80% 70%,rgba(139,92,246,0.15) 0%,transparent 50%)}
-.hero-content{position:relative;z-index:1;max-width:600px}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:4px 12px;background:rgba(229,9,20,0.15);border:1px solid rgba(229,9,20,0.3);border-radius:4px;font-size:12px;font-weight:700;color:#e50914;text-transform:uppercase;letter-spacing:2px;margin-bottom:16px}
-.hero-title{font-size:72px;font-weight:900;line-height:1;letter-spacing:-3px;margin-bottom:16px;text-shadow:2px 2px 20px rgba(0,0,0,0.5)}
-.hero-meta{display:flex;gap:16px;align-items:center;margin-bottom:20px;font-size:14px}
-.hero-meta .match{color:#46d369;font-weight:700}
-.hero-meta .year{color:#b3b3b3}
-.hero-meta .tag{padding:2px 8px;border:1px solid rgba(255,255,255,0.4);font-size:11px;font-weight:600}
-.hero-desc{font-size:18px;line-height:1.5;color:#e5e5e5;margin-bottom:24px;max-width:500px;text-shadow:1px 1px 4px rgba(0,0,0,0.5)}
-.hero-buttons{display:flex;gap:12px}
-.btn{padding:12px 24px;border:none;border-radius:4px;font-size:16px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all 0.2s}
-.btn-play{background:#fff;color:#000}
-.btn-play:hover{background:rgba(255,255,255,0.75)}
-.btn-info{background:rgba(109,109,110,0.7);color:#fff;backdrop-filter:blur(10px)}
-.btn-info:hover{background:rgba(109,109,110,0.4)}
+  linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);
+  background-size:60px 60px;mask-image:radial-gradient(ellipse at center,black 30%,transparent 70%)}
 
-/* Rows */
-.rows{position:relative;z-index:2;margin-top:-120px;padding-bottom:60px}
-.row{margin-bottom:48px;padding:0 0 0 48px}
-.row-title{font-size:22px;font-weight:700;margin-bottom:16px}
-.row-scroller{display:flex;gap:12px;overflow-x:auto;padding:8px 48px 24px 0;scroll-snap-type:x mandatory}
+.hero-content{position:relative;z-index:1;max-width:900px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;padding:8px 18px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:100px;font-size:13px;font-weight:500;margin-bottom:32px;backdrop-filter:blur(10px)}
+.eyebrow-dot{width:6px;height:6px;background:#10b981;border-radius:50%;box-shadow:0 0 12px #10b981;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.6;transform:scale(0.9)}}
 
-/* Auto-scroll marquee */
-.row-marquee{position:relative;overflow:hidden;padding:8px 0 24px 0;mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%)}
-.marquee-track{display:flex;gap:12px;width:max-content;animation:marquee 60s linear infinite}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(44px,7vw,84px);font-weight:900;line-height:1.05;letter-spacing:-0.04em;margin-bottom:24px}
+.hero h1 .gradient{background:linear-gradient(135deg,#c4a875 0%,#e8d4a8 50%,#a78bfa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:inline-block}
+.hero p.lead{font-size:clamp(16px,2vw,20px);color:rgba(255,255,255,0.65);max-width:640px;margin:0 auto 40px;line-height:1.6}
+
+.cta-group{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:56px}
+.btn-primary{padding:18px 36px;background:linear-gradient(135deg,#fff,#e5e5e5);color:#000;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:10px;transition:all 0.3s;box-shadow:0 0 0 1px rgba(255,255,255,0.1),0 20px 40px -20px rgba(255,255,255,0.4)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 0 0 1px rgba(255,255,255,0.2),0 30px 60px -20px rgba(255,255,255,0.6)}
+.btn-secondary{padding:18px 36px;background:rgba(255,255,255,0.05);color:#fff;border:1px solid rgba(255,255,255,0.15);border-radius:12px;font-size:15px;font-weight:600;cursor:pointer;backdrop-filter:blur(10px);transition:all 0.3s}
+.btn-secondary:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.3)}
+
+.trust{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;opacity:0.6}
+.trust-item{font-size:12px;text-transform:uppercase;letter-spacing:2.5px;font-weight:600;display:flex;align-items:center;gap:8px}
+.trust-item strong{color:#c4a875;font-weight:800}
+
+/* ========= STATS BAR ========= */
+.stats{position:relative;z-index:1;padding:48px 32px;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.02)}
+.stats-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:32px;text-align:center}
+.stat-num{font-family:'Playfair Display',serif;font-size:42px;font-weight:900;background:linear-gradient(135deg,#fff,#c4a875);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.stat-label{font-size:12px;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,0.5);margin-top:8px;font-weight:600}
+
+/* ========= SECTION COMMON ========= */
+.section{position:relative;padding:120px 32px;max-width:1400px;margin:0 auto}
+.section-header{text-align:center;margin-bottom:80px}
+.section-tag{display:inline-block;font-size:12px;text-transform:uppercase;letter-spacing:3px;color:#c4a875;font-weight:700;margin-bottom:16px;padding:6px 14px;border:1px solid rgba(196,168,117,0.3);border-radius:100px}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,56px);font-weight:900;letter-spacing:-0.03em;margin-bottom:20px;line-height:1.1}
+.section-subtitle{font-size:18px;color:rgba(255,255,255,0.6);max-width:640px;margin:0 auto;line-height:1.6}
+
+/* ========= FEATURED COURSES (BIG CARDS) ========= */
+.featured-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:32px}
+.big-card{position:relative;height:600px;border-radius:24px;overflow:hidden;cursor:pointer;background:#1a1a1a;transition:transform 0.5s cubic-bezier(.2,.8,.2,1),box-shadow 0.5s}
+.big-card:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 40px 80px -20px rgba(0,0,0,0.8)}
+.big-card-img{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 0.6s}
+.big-card:hover .big-card-img{transform:scale(1.08)}
+.big-card-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,0.95) 0%,rgba(0,0,0,0.4) 50%,rgba(0,0,0,0.2) 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:36px}
+.big-card-tag{display:inline-flex;align-self:flex-start;align-items:center;gap:6px;padding:6px 14px;background:rgba(196,168,117,0.95);color:#000;border-radius:100px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:20px}
+.big-card-tag.hot{background:#e50914;color:#fff}
+.big-card-tag.new{background:#10b981;color:#000}
+.big-card-title{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;line-height:1.05;margin-bottom:14px;letter-spacing:-0.02em;text-shadow:2px 2px 20px rgba(0,0,0,0.8)}
+.big-card-desc{font-size:15px;color:rgba(255,255,255,0.85);margin-bottom:24px;line-height:1.5;text-shadow:1px 1px 10px rgba(0,0,0,0.8)}
+.big-card-meta{display:flex;justify-content:space-between;align-items:center;padding-top:20px;border-top:1px solid rgba(255,255,255,0.15)}
+.big-card-stats{display:flex;gap:14px;font-size:13px;color:rgba(255,255,255,0.7);font-weight:500}
+.big-card-cta{width:48px;height:48px;background:#fff;color:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;transition:all 0.3s}
+.big-card:hover .big-card-cta{transform:translateX(4px) scale(1.1);box-shadow:0 0 0 6px rgba(255,255,255,0.2)}
+
+/* ========= AUTO-SCROLL MARQUEE ========= */
+.marquee-section{position:relative;padding:80px 0;overflow:hidden}
+.marquee-row{position:relative;overflow:hidden;mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%)}
+.marquee-track{display:flex;gap:20px;width:max-content;animation:scroll 80s linear infinite;padding:20px 0}
 .marquee-track:hover{animation-play-state:paused}
-@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.row-marquee.reverse .marquee-track{animation-direction:reverse}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee-row.reverse .marquee-track{animation-direction:reverse}
 
-/* VERTICAL POSTER CARD (Netflix poster mode) */
-.poster{flex:0 0 220px;height:330px;border-radius:6px;overflow:hidden;cursor:pointer;position:relative;scroll-snap-align:start;transition:transform 0.3s,box-shadow 0.3s;background-size:cover;background-position:center;background-color:#1a1a1a}
-.poster:hover{transform:scale(1.05);z-index:10;box-shadow:0 25px 50px rgba(0,0,0,0.9)}
+.poster{flex:0 0 320px;height:480px;border-radius:16px;overflow:hidden;cursor:pointer;position:relative;background:#1a1a1a;background-size:cover;background-position:center;transition:transform 0.4s}
+.poster:hover{transform:scale(1.06);z-index:5;box-shadow:0 30px 60px rgba(0,0,0,0.8)}
+.poster-overlay-img{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,0.95) 0%,rgba(0,0,0,0.3) 60%,rgba(0,0,0,0.1) 100%);padding:24px;display:flex;flex-direction:column;justify-content:flex-end}
+.poster-tag{display:inline-flex;align-self:flex-start;padding:4px 12px;background:rgba(0,0,0,0.7);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2);border-radius:100px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px}
+.poster-tag.hot{background:rgba(229,9,20,0.9);border-color:#e50914}
+.poster-tag.new{background:rgba(16,185,129,0.9);border-color:#10b981;color:#000}
+.poster-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:800;line-height:1.1;margin-bottom:8px;letter-spacing:-0.02em;text-shadow:2px 2px 12px rgba(0,0,0,0.9)}
+.poster-meta{font-size:12px;color:rgba(255,255,255,0.8);font-weight:600;text-shadow:1px 1px 6px rgba(0,0,0,0.9);text-transform:uppercase;letter-spacing:1.5px}
 
-/* Poster covers - gradientes coloridos por categoria */
-.cover-civil{background:linear-gradient(135deg,#e50914 0%,#7f0a11 70%,#3d0508 100%)}
-.cover-tributario{background:linear-gradient(135deg,#8b5cf6 0%,#4c1d95 70%,#1e0d4d 100%)}
-.cover-trabalhista{background:linear-gradient(135deg,#059669 0%,#064e3b 70%,#022c1e 100%)}
-.cover-empresarial{background:linear-gradient(135deg,#1e3a8a 0%,#1e1b4b 70%,#0c0a2e 100%)}
-.cover-penal{background:linear-gradient(135deg,#d97706 0%,#78350f 70%,#3d1c08 100%)}
-.cover-familia{background:linear-gradient(135deg,#be185d 0%,#831843 70%,#4d0f28 100%)}
-.cover-digital{background:linear-gradient(135deg,#0891b2 0%,#164e63 70%,#0a2e3a 100%)}
-.cover-constitucional{background:linear-gradient(135deg,#7c3aed 0%,#4c1d95 70%,#2d1063 100%)}
-.cover-imobiliario{background:linear-gradient(135deg,#0d9488 0%,#134e4a 70%,#062b29 100%)}
-.cover-medico{background:linear-gradient(135deg,#dc2626 0%,#7f1d1d 70%,#3d0d0d 100%)}
+/* ========= VALUE PROPS ========= */
+.values-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.value-card{padding:40px 32px;background:linear-gradient(135deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.08);border-radius:20px;transition:all 0.4s}
+.value-card:hover{border-color:rgba(196,168,117,0.3);transform:translateY(-4px);background:linear-gradient(135deg,rgba(196,168,117,0.06),rgba(255,255,255,0.02))}
+.value-icon{width:56px;height:56px;background:linear-gradient(135deg,#c4a875,#8b6f47);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:24px;box-shadow:0 10px 30px -10px rgba(196,168,117,0.5)}
+.value-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;margin-bottom:12px;letter-spacing:-0.02em}
+.value-desc{color:rgba(255,255,255,0.6);font-size:15px;line-height:1.6}
 
-/* Custom uploaded image */
-.poster.custom-image{background-size:cover}
+/* ========= TESTIMONIALS ========= */
+.testimonials{background:linear-gradient(180deg,transparent,rgba(196,168,117,0.04),transparent)}
+.testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}
+.testimonial{padding:36px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:20px;position:relative}
+.testimonial::before{content:'"';position:absolute;top:-20px;left:24px;font-family:'Playfair Display',serif;font-size:120px;color:#c4a875;opacity:0.3;line-height:1}
+.testimonial-text{font-size:16px;line-height:1.7;color:rgba(255,255,255,0.9);margin-bottom:24px;position:relative;z-index:1}
+.testimonial-author{display:flex;align-items:center;gap:14px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.08)}
+.testimonial-avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#c4a875,#8b6f47);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;color:#000}
+.testimonial-name{font-weight:700;font-size:14px}
+.testimonial-role{font-size:12px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:1.5px;margin-top:2px}
 
-/* Decorative elements on cover */
-.poster-cover{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:20px}
-.poster-cover.has-image{background:linear-gradient(0deg,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.3) 50%,rgba(0,0,0,0.5) 100%)}
-.poster-icon{font-size:64px;opacity:0.4;align-self:flex-end;line-height:1}
-.poster-info{position:relative;z-index:1}
-.poster-tag{display:inline-block;padding:3px 10px;background:rgba(0,0,0,0.6);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.2);border-radius:3px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
-.poster-tag.new{background:#e50914;border-color:#e50914}
-.poster-tag.hot{background:rgba(245,158,11,0.9);border-color:#f59e0b;color:#000}
-.poster-title{font-size:18px;font-weight:900;line-height:1.1;margin-bottom:6px;letter-spacing:-0.5px;text-shadow:2px 2px 8px rgba(0,0,0,0.8)}
-.poster-meta{font-size:11px;color:rgba(255,255,255,0.8);font-weight:500;text-shadow:1px 1px 4px rgba(0,0,0,0.8)}
+/* ========= CTA FINAL ========= */
+.cta-final{position:relative;padding:120px 32px;text-align:center;overflow:hidden}
+.cta-final::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(196,168,117,0.15) 0%,transparent 60%)}
+.cta-final-content{position:relative;z-index:1;max-width:760px;margin:0 auto}
+.cta-final h2{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,56px);font-weight:900;letter-spacing:-0.03em;margin-bottom:20px;line-height:1.1}
+.cta-final p{font-size:18px;color:rgba(255,255,255,0.65);margin-bottom:40px;line-height:1.6}
 
-/* Hover overlay with actions */
-.poster-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,0.95) 0%,rgba(0,0,0,0.4) 60%,transparent 100%);padding:16px;display:flex;flex-direction:column;justify-content:flex-end;opacity:0;transition:opacity 0.3s;gap:8px}
-.poster:hover .poster-overlay{opacity:1}
-.poster-actions{display:flex;gap:6px;margin-top:8px}
-.action-btn{width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,0.7);border:1.5px solid rgba(255,255,255,0.6);color:#fff;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;transition:all 0.2s}
-.action-btn:hover{border-color:#fff;background:rgba(255,255,255,0.2)}
-.action-btn.play{background:#fff;color:#000;border-color:#fff}
-.action-btn.edit{margin-left:auto;background:rgba(229,9,20,0.9);border-color:#e50914}
-.action-btn.edit:hover{background:#e50914}
-
-/* Match badge */
-.match-badge{color:#46d369;font-weight:700;font-size:12px;margin-bottom:4px}
-
-/* Progress bar */
-.poster-progress{position:absolute;bottom:0;left:0;right:0;height:3px;background:rgba(255,255,255,0.2);z-index:2}
-.poster-progress-fill{height:100%;background:#e50914}
-
-/* Modal */
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:1000;align-items:center;justify-content:center;padding:20px}
-.modal.open{display:flex}
-.modal-content{background:#181818;border-radius:8px;padding:32px;max-width:500px;width:100%;border:1px solid rgba(255,255,255,0.1)}
-.modal-title{font-size:24px;font-weight:700;margin-bottom:8px}
-.modal-subtitle{color:#b3b3b3;font-size:14px;margin-bottom:24px}
-.upload-area{border:2px dashed rgba(255,255,255,0.2);border-radius:8px;padding:40px 20px;text-align:center;cursor:pointer;transition:all 0.2s;margin-bottom:16px}
-.upload-area:hover{border-color:#e50914;background:rgba(229,9,20,0.05)}
-.upload-area input{display:none}
-.upload-icon{font-size:48px;margin-bottom:12px;opacity:0.6}
-.upload-text{font-size:14px;color:#b3b3b3}
-.preset-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:24px}
-.preset{aspect-ratio:2/3;border-radius:4px;cursor:pointer;border:2px solid transparent;transition:all 0.2s}
-.preset:hover{transform:scale(1.05);border-color:#fff}
-.preset.selected{border-color:#e50914}
-.modal-buttons{display:flex;gap:12px;justify-content:flex-end}
-.modal-btn{padding:10px 20px;border:none;border-radius:4px;font-size:14px;font-weight:600;cursor:pointer}
-.modal-btn-cancel{background:rgba(255,255,255,0.1);color:#fff}
-.modal-btn-save{background:#e50914;color:#fff}
-.modal-close{position:absolute;top:16px;right:16px;background:none;border:none;color:#fff;font-size:24px;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%}
-.modal-close:hover{background:rgba(255,255,255,0.1)}
-
-/* Edit mode toggle */
-.edit-mode-banner{position:fixed;bottom:24px;right:24px;background:rgba(229,9,20,0.95);padding:12px 20px;border-radius:50px;font-size:13px;font-weight:600;cursor:pointer;z-index:99;box-shadow:0 10px 30px rgba(0,0,0,0.5);display:flex;align-items:center;gap:8px;transition:all 0.2s}
-.edit-mode-banner:hover{transform:translateY(-2px)}
-body.edit-mode .poster .action-btn.edit{display:flex !important}
-.action-btn.edit{display:none}
+/* ========= FOOTER ========= */
+.footer{padding:48px 32px 32px;border-top:1px solid rgba(255,255,255,0.06);background:#050505}
+.footer-content{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px}
+.footer-text{font-size:13px;color:rgba(255,255,255,0.4)}
 
 @media(max-width:768px){
-  .header{padding:12px 16px}
-  .hero{padding:0 16px 40px}
-  .hero-title{font-size:40px;letter-spacing:-1px}
-  .hero-desc{font-size:14px}
-  .rows,.row{padding-left:16px}
-  .nav-links{display:none}
-  .poster{flex:0 0 150px;height:225px}
-  .poster-title{font-size:14px}
+  .nav{padding:14px 20px}
+  .nav-links a:not(.btn-login){display:none}
+  .hero{padding:100px 20px 60px}
+  .section{padding:80px 20px}
+  .section-header{margin-bottom:48px}
+  .featured-grid{grid-template-columns:1fr;gap:20px}
+  .big-card{height:480px}
+  .big-card-overlay{padding:24px}
+  .big-card-title{font-size:28px}
+  .poster{flex:0 0 240px;height:360px}
+  .poster-title{font-size:18px}
+  .trust{gap:24px}
+  .stat-num{font-size:32px}
+  .cta-group{flex-direction:column;align-items:stretch}
 }
 </style>
 </head>
 <body>
 
+<!-- HEADER -->
 <header class="header" id="header">
-  <div style="display:flex;align-items:center;flex:1">
-    <div class="logo">ACADEMIA JURÍDICA</div>
-    <nav class="nav-links">
-      <a href="#" class="active">Início</a>
-      <a href="#">Cursos</a>
-      <a href="#">Minha Lista</a>
-    </nav>
-  </div>
-  <div class="header-right">
-    <button class="icon-btn">🔍</button>
-    <button class="icon-btn">🔔</button>
-    <div class="avatar">A</div>
-  </div>
+  <nav class="nav">
+    <div class="logo">Academia Jurídica</div>
+    <div class="nav-links">
+      <a href="#cursos">Cursos</a>
+      <a href="#beneficios">Benefícios</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="dashboard.html" class="btn-login">Entrar</a>
+    </div>
+  </nav>
 </header>
 
-<!-- Hero -->
+<!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
-    <h1 class="hero-title">Direito<br>Tributário 4.0</h1>
-    <p class="hero-desc">
-      Planejamento tributário moderno com casos reais e jurisprudência atualizada do CARF.
+    <div class="eyebrow">
+      <span class="eyebrow-dot"></span>
+      Nova turma — vagas limitadas até 31/05
+    </div>
+    <h1>
+      A advocacia que você quer<br>
+      começa com <span class="gradient">conhecimento de elite</span>
+    </h1>
+    <p class="lead">
+      Cursos selecionados, professores referência no mercado e uma experiência de aprendizado pensada para advogados que buscam resultado real.
     </p>
-    <div class="hero-buttons">
-      <button class="btn btn-play">▶ Assistir</button>
-      <button class="btn btn-info">ⓘ Detalhes</button>
+    <div class="cta-group">
+      <button class="btn-primary" onclick="document.getElementById('cursos').scrollIntoView()">
+        Ver cursos
+        <span>→</span>
+      </button>
+      <a href="dashboard.html" class="btn-secondary">Acessar plataforma</a>
+    </div>
+    <div class="trust">
+      <div class="trust-item"><strong>+500</strong> alunos ativos</div>
+      <div class="trust-item"><strong>4.9★</strong> avaliação média</div>
+      <div class="trust-item"><strong>OAB</strong> certificado</div>
     </div>
   </div>
 </section>
 
-<!-- Rows com posters verticais -->
-<div class="rows">
+<!-- STATS -->
+<section class="stats">
+  <div class="stats-grid">
+    <div><div class="stat-num">500+</div><div class="stat-label">Alunos formados</div></div>
+    <div><div class="stat-num">35</div><div class="stat-label">Cursos premium</div></div>
+    <div><div class="stat-num">98%</div><div class="stat-label">Aprovação OAB</div></div>
+    <div><div class="stat-num">4.9★</div><div class="stat-label">Avaliação média</div></div>
+  </div>
+</section>
 
-  <!-- Continue Watching -->
-  <div class="row">
-    <h2 class="row-title">Continue assistindo</h2>
-    <div class="row-scroller" id="row-continue"></div>
+<!-- FEATURED COURSES (BIG CARDS) -->
+<section class="section" id="cursos">
+  <div class="section-header">
+    <div class="section-tag">Cursos em destaque</div>
+    <h2 class="section-title">Conhecimento que transforma carreiras</h2>
+    <p class="section-subtitle">Os cursos mais procurados por advogados que querem se destacar no mercado.</p>
   </div>
 
-  <!-- Trending -->
-  <div class="row">
-    <h2 class="row-title">Em alta</h2>
-    <div class="row-marquee"><div class="marquee-track" id="row-trending"></div></div>
+  <div class="featured-grid">
+
+    <div class="big-card">
+      <div class="big-card-img" style="background-image:url('https://images.unsplash.com/photo-1589216532372-1c2a367900d9?w=900&q=80')"></div>
+      <div class="big-card-overlay">
+        <span class="big-card-tag hot">🔥 Mais vendido</span>
+        <h3 class="big-card-title">Direito Civil Avançado</h3>
+        <p class="big-card-desc">Contratos complexos, responsabilidade civil e sucessões com casos reais do mercado.</p>
+        <div class="big-card-meta">
+          <div class="big-card-stats">
+            <span>40h</span><span>•</span><span>12 módulos</span><span>•</span><span>Certificado</span>
+          </div>
+          <div class="big-card-cta">→</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="big-card">
+      <div class="big-card-img" style="background-image:url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=900&q=80')"></div>
+      <div class="big-card-overlay">
+        <span class="big-card-tag new">✨ Novo lançamento</span>
+        <h3 class="big-card-title">Tributário 4.0</h3>
+        <p class="big-card-desc">Planejamento tributário moderno e jurisprudência atualizada do CARF.</p>
+        <div class="big-card-meta">
+          <div class="big-card-stats">
+            <span>32h</span><span>•</span><span>10 módulos</span><span>•</span><span>Certificado</span>
+          </div>
+          <div class="big-card-cta">→</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="big-card">
+      <div class="big-card-img" style="background-image:url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=900&q=80')"></div>
+      <div class="big-card-overlay">
+        <span class="big-card-tag">Premium</span>
+        <h3 class="big-card-title">Trabalhista 4.0</h3>
+        <p class="big-card-desc">Reforma, home office, gig economy e os novos desafios do mundo do trabalho.</p>
+        <div class="big-card-meta">
+          <div class="big-card-stats">
+            <span>28h</span><span>•</span><span>8 módulos</span><span>•</span><span>Certificado</span>
+          </div>
+          <div class="big-card-cta">→</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- AUTO-SCROLL MARQUEE -->
+<section class="marquee-section">
+  <div class="section-header" style="margin-bottom:48px;padding:0 32px">
+    <div class="section-tag">Catálogo completo</div>
+    <h2 class="section-title">35+ cursos para você escolher</h2>
   </div>
 
-  <!-- New Releases -->
-  <div class="row">
-    <h2 class="row-title">Novos lançamentos</h2>
-    <div class="row-marquee reverse"><div class="marquee-track" id="row-new"></div></div>
+  <div class="marquee-row">
+    <div class="marquee-track" id="marqueeA"></div>
   </div>
 
-</div>
+  <div class="marquee-row reverse" style="margin-top:20px">
+    <div class="marquee-track" id="marqueeB"></div>
+  </div>
+</section>
 
-<!-- Modal de edição de capa -->
-<div class="modal" id="coverModal">
-  <div class="modal-content" style="position:relative">
-    <button class="modal-close" onclick="closeModal()">×</button>
-    <h2 class="modal-title">Personalizar capa</h2>
-    <p class="modal-subtitle">Escolha um estilo predefinido ou faça upload da sua imagem</p>
+<!-- VALUE PROPS -->
+<section class="section" id="beneficios">
+  <div class="section-header">
+    <div class="section-tag">Por que escolher</div>
+    <h2 class="section-title">Tudo que você precisa em um só lugar</h2>
+  </div>
 
-    <label class="upload-area" for="fileUpload">
-      <div class="upload-icon">📤</div>
-      <div class="upload-text"><strong>Clique para fazer upload</strong><br>PNG, JPG até 5MB</div>
-      <input type="file" id="fileUpload" accept="image/*">
-    </label>
-
-    <div style="font-size:12px;color:#b3b3b3;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;font-weight:600">Ou escolha um estilo</div>
-    <div class="preset-grid" id="presetGrid"></div>
-
-    <div class="modal-buttons">
-      <button class="modal-btn modal-btn-cancel" onclick="closeModal()">Cancelar</button>
-      <button class="modal-btn modal-btn-save" onclick="saveCover()">Salvar</button>
+  <div class="values-grid">
+    <div class="value-card">
+      <div class="value-icon">⚖️</div>
+      <h3 class="value-title">Professores referência</h3>
+      <p class="value-desc">Mestres, doutores e advogados de grandes escritórios ensinando o que realmente funciona no dia a dia.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">📚</div>
+      <h3 class="value-title">Conteúdo sempre atualizado</h3>
+      <p class="value-desc">Jurisprudência recente, reforma legislativa e teses atualizadas conforme decisões dos tribunais superiores.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">🎓</div>
+      <h3 class="value-title">Certificação OAB</h3>
+      <p class="value-desc">Todos os cursos contam pontos para a Escola Superior de Advocacia. Certificado digital validado.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">💼</div>
+      <h3 class="value-title">Cases reais</h3>
+      <p class="value-desc">Petições, contratos e estratégias que advogados de grandes escritórios usam hoje, prontos pra adaptar.</p>
     </div>
   </div>
-</div>
+</section>
 
-<!-- Edit mode toggle -->
-<div class="edit-mode-banner" onclick="toggleEditMode()">
-  <span id="editIcon">✏️</span>
-  <span id="editLabel">Editar capas</span>
-</div>
+<!-- TESTIMONIALS -->
+<section class="section testimonials" id="depoimentos">
+  <div class="section-header">
+    <div class="section-tag">O que dizem</div>
+    <h2 class="section-title">Advogados que transformaram a carreira</h2>
+  </div>
+
+  <div class="testimonials-grid">
+    <div class="testimonial">
+      <p class="testimonial-text">Em 6 meses dobrei o ticket médio do escritório. O curso de Tributário Estratégico me deu o repertório que eu precisava pra atender empresas de médio porte.</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">RC</div>
+        <div>
+          <div class="testimonial-name">Rafael Carvalho</div>
+          <div class="testimonial-role">Advogado tributarista — SP</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <p class="testimonial-text">A qualidade dos professores é absurda. Tive aula com gente que eu só lia em manual. Plataforma fluida, conteúdo direto ao ponto.</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">AM</div>
+        <div>
+          <div class="testimonial-name">Ana Martins</div>
+          <div class="testimonial-role">Sócia — escritório boutique</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <p class="testimonial-text">Passei na primeira fase da OAB usando só o material daqui. Recomendo pra qualquer um que queira estudar de forma séria, sem enrolação.</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">JP</div>
+        <div>
+          <div class="testimonial-name">João Pedro</div>
+          <div class="testimonial-role">Recém-formado — RJ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <div class="cta-final-content">
+    <h2>Sua próxima vitória começa aqui</h2>
+    <p>Acesse mais de 35 cursos, materiais exclusivos e a comunidade de advogados que mais cresce no Brasil.</p>
+    <div class="cta-group">
+      <a href="dashboard.html" class="btn-primary">Começar agora <span>→</span></a>
+      <a href="#cursos" class="btn-secondary">Ver todos os cursos</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="logo">Academia Jurídica</div>
+    <div class="footer-text">© 2026 Academia Jurídica. Todos os direitos reservados.</div>
+  </div>
+</footer>
 
 <script>
-// Dados dos cursos
-const courses = {
-  continue:[
-    {id:1,title:'Direito Civil Avançado',cover:'cover-civil',icon:'⚖️',meta:'Módulo 8 de 12',progress:65},
-    {id:2,title:'Trabalhista 4.0',cover:'cover-trabalhista',icon:'📜',meta:'Módulo 3 de 8',progress:30},
-    {id:3,title:'Constitucional na Prática',cover:'cover-constitucional',icon:'🏛️',meta:'Módulo 9 de 11',progress:80}
-  ],
-  trending:[
-    {id:4,title:'Direito Civil Avançado',cover:'cover-civil',icon:'⚖️',duration:'40h'},
-    {id:5,title:'Processo Civil Moderno',cover:'cover-empresarial',icon:'📘',duration:'28h'},
-    {id:6,title:'Tributário Estratégico',cover:'cover-tributario',icon:'🏛️',duration:'32h'},
-    {id:7,title:'Empresarial para Sócios',cover:'cover-empresarial',icon:'💼',duration:'24h'},
-    {id:9,title:'Família e Sucessões',cover:'cover-familia',icon:'👥',duration:'22h'}
-  ],
-  new:[
-    {id:11,title:'IA no Direito',cover:'cover-tributario',icon:'🤖',duration:'16h',tag:'NEW'},
-    {id:12,title:'Advocacia 4.0',cover:'cover-constitucional',icon:'⚡',duration:'20h',tag:'NEW'},
-    {id:13,title:'Direito Médico',cover:'cover-medico',icon:'🏥',duration:'26h',tag:'NEW'},
-    {id:14,title:'Imobiliário Moderno',cover:'cover-imobiliario',icon:'🏢',duration:'30h',tag:'NEW'}
-  ]
-};
+// Catálogo completo com imagens reais
+const catalog = [
+  {title:'Direito Civil Avançado',meta:'40h • Avançado',img:'1589216532372-1c2a367900d9',tag:'hot',tagLabel:'🔥 Em alta'},
+  {title:'Tributário 4.0',meta:'32h • 10 módulos',img:'1450101499163-c8848c66ca85',tag:'new',tagLabel:'Novo'},
+  {title:'Trabalhista 4.0',meta:'28h • Atualizado',img:'1521737604893-d14cc237f11d',tag:'',tagLabel:'Premium'},
+  {title:'Empresarial para Sócios',meta:'24h • Prático',img:'1507679799987-c73779587ccf',tag:'',tagLabel:''},
+  {title:'Penal Econômico',meta:'36h • Avançado',img:'1505664194779-8beaceb93744',tag:'hot',tagLabel:'🔥 Em alta'},
+  {title:'Família e Sucessões',meta:'22h • 7 módulos',img:'1511895426328-dc8714191300',tag:'',tagLabel:''},
+  {title:'LGPD e Direito Digital',meta:'18h • Essencial',img:'1518770660439-4636190af475',tag:'new',tagLabel:'Novo'},
+  {title:'Constitucional Aplicado',meta:'30h • Tribunais',img:'1486406146926-c627a92ad1ab',tag:'',tagLabel:''},
+  {title:'Imobiliário Moderno',meta:'30h • Prático',img:'1551836022-deb4988cc6c0',tag:'new',tagLabel:'Novo'},
+  {title:'Direito Médico',meta:'26h • Especialização',img:'1576091160399-112ba8d25d1d',tag:'new',tagLabel:'Novo'},
+  {title:'IA no Direito',meta:'16h • Tendência',img:'1677442136019-21780ecad995',tag:'new',tagLabel:'🚀 Novo'},
+  {title:'Processo Civil Moderno',meta:'28h • CPC atualizado',img:'1589829085413-56de8ae18c73',tag:'',tagLabel:''}
+];
 
-const presets = ['cover-civil','cover-tributario','cover-trabalhista','cover-empresarial','cover-penal','cover-familia','cover-digital','cover-constitucional','cover-imobiliario','cover-medico'];
-
-// Carregar capas salvas do localStorage
-const savedCovers = JSON.parse(localStorage.getItem('courseCovers') || '{}');
-
-function getPosterCover(course){
-  const saved = savedCovers[course.id];
-  if(saved && saved.type === 'image') return `style="background-image:url('${saved.value}')" class="custom-image"`;
-  if(saved && saved.type === 'preset') return `class="${saved.value}"`;
-  return `class="${course.cover}"`;
-}
-
-function hasImage(course){
-  const saved = savedCovers[course.id];
-  return saved && saved.type === 'image';
-}
-
-function renderPoster(course, options = {}){
-  const cover = getPosterCover(course);
-  const showProgress = options.showProgress;
-  const tagClass = course.tag === 'NEW' ? 'new' : course.tag === 'HOT' ? 'hot' : '';
-  const tagLabel = course.tag === 'NEW' ? 'NOVO' : course.tag === 'HOT' ? '🔥 EM ALTA' : course.tag === 'POPULAR' ? '⭐ POPULAR' : '';
-
+function posterHTML(c){
+  const url = `https://images.unsplash.com/photo-${c.img}?w=700&q=80`;
   return `
-    <div class="poster" ${cover.includes('style')?cover:'class="poster '+course.cover.replace('cover-','cover-')+'"'} data-course-id="${course.id}" onclick="openCourse(${course.id})">
-      <div class="poster-cover ${hasImage(course)?'has-image':''}">
-        <div class="poster-icon">${course.icon}</div>
-        <div class="poster-info">
-          ${tagLabel?`<span class="poster-tag ${tagClass}">${tagLabel}</span>`:''}
-          ${course.match?`<div class="match-badge">${course.match}% match</div>`:''}
-          <div class="poster-title">${course.title}</div>
-          <div class="poster-meta">${course.meta || course.duration || ''}</div>
-        </div>
+    <div class="poster" style="background-image:url('${url}')">
+      <div class="poster-overlay-img">
+        ${c.tagLabel?`<span class="poster-tag ${c.tag}">${c.tagLabel}</span>`:''}
+        <div class="poster-title">${c.title}</div>
+        <div class="poster-meta">${c.meta}</div>
       </div>
-      <div class="poster-overlay">
-        <div class="poster-title" style="text-shadow:none">${course.title}</div>
-        ${course.match?`<div class="match-badge">${course.match}% match</div>`:''}
-        <div class="poster-meta" style="text-shadow:none">${course.meta || course.duration || ''}</div>
-        <div class="poster-actions">
-          <button class="action-btn play" onclick="event.stopPropagation();playCourse(${course.id})">▶</button>
-          <button class="action-btn" onclick="event.stopPropagation();addToList(${course.id})" title="Adicionar à lista">+</button>
-          <button class="action-btn" onclick="event.stopPropagation();likeCourse(${course.id})" title="Curtir">👍</button>
-          <button class="action-btn edit" onclick="event.stopPropagation();editCover(${course.id})" title="Editar capa">✏️</button>
-        </div>
-      </div>
-      ${showProgress?`<div class="poster-progress"><div class="poster-progress-fill" style="width:${course.progress}%"></div></div>`:''}
     </div>
   `;
 }
 
-// Render rows
-function renderRow(rowId, courses, options = {}){
-  const row = document.getElementById(rowId);
-  if(!row) return;
-  const html = courses.map(c => {
-    let posterClass = '';
-    let posterStyle = '';
-    const saved = savedCovers[c.id];
-    if(saved && saved.type === 'image'){
-      posterStyle = `style="background-image:url('${saved.value}')"`;
-      posterClass = 'custom-image';
-    } else if(saved && saved.type === 'preset'){
-      posterClass = saved.value;
-    } else {
-      posterClass = c.cover;
-    }
-
-    const tagClass = c.tag === 'NEW' ? 'new' : c.tag === 'HOT' ? 'hot' : '';
-    const tagLabel = c.tag === 'NEW' ? 'NOVO' : c.tag === 'HOT' ? '🔥 EM ALTA' : c.tag === 'POPULAR' ? '⭐ POPULAR' : '';
-    const hasImg = saved && saved.type === 'image';
-
-    return `
-      <div class="poster ${posterClass}" ${posterStyle} data-course-id="${c.id}" onclick="openCourse(${c.id})">
-        <div class="poster-cover ${hasImg?'has-image':''}">
-          ${!hasImg?`<div class="poster-icon">${c.icon}</div>`:'<div></div>'}
-          <div class="poster-info">
-            ${tagLabel?`<span class="poster-tag ${tagClass}">${tagLabel}</span>`:''}
-            ${c.match?`<div class="match-badge">${c.match}% match</div>`:''}
-            <div class="poster-title">${c.title}</div>
-            <div class="poster-meta">${c.meta || c.duration || ''}</div>
-          </div>
-        </div>
-        <div class="poster-overlay">
-          <div class="poster-actions">
-            <button class="action-btn play" onclick="event.stopPropagation();playCourse(${c.id})">▶</button>
-            <button class="action-btn" onclick="event.stopPropagation()" title="Adicionar">+</button>
-            <button class="action-btn" onclick="event.stopPropagation()" title="Curtir">👍</button>
-            <button class="action-btn edit" onclick="event.stopPropagation();editCover(${c.id})" title="Editar capa">✏️</button>
-          </div>
-        </div>
-        ${options.showProgress?`<div class="poster-progress"><div class="poster-progress-fill" style="width:${c.progress}%"></div></div>`:''}
-      </div>
-    `;
-  }).join('');
-  // Se for marquee, duplicar conteúdo pra loop contínuo
-  row.innerHTML = row.classList.contains('marquee-track') ? html + html : html;
-}
-
-renderRow('row-continue', courses.continue, {showProgress:true});
-renderRow('row-trending', courses.trending);
-renderRow('row-new', courses.new);
-
-// Modal de edição de capa
-let currentEditingId = null;
-let selectedPreset = null;
-let uploadedImage = null;
-
-function editCover(courseId){
-  currentEditingId = courseId;
-  selectedPreset = null;
-  uploadedImage = null;
-
-  // Render presets
-  const grid = document.getElementById('presetGrid');
-  grid.innerHTML = presets.map(p => `<div class="preset ${p}" onclick="selectPreset('${p}',this)"></div>`).join('');
-
-  document.getElementById('coverModal').classList.add('open');
-}
-
-function selectPreset(preset, el){
-  selectedPreset = preset;
-  uploadedImage = null;
-  document.querySelectorAll('.preset').forEach(p => p.classList.remove('selected'));
-  el.classList.add('selected');
-}
-
-document.getElementById('fileUpload').addEventListener('change', e => {
-  const file = e.target.files[0];
-  if(!file) return;
-  const reader = new FileReader();
-  reader.onload = e => {
-    uploadedImage = e.target.result;
-    selectedPreset = null;
-    document.querySelectorAll('.preset').forEach(p => p.classList.remove('selected'));
-  };
-  reader.readAsDataURL(file);
-});
-
-function saveCover(){
-  if(!currentEditingId) return;
-
-  if(uploadedImage){
-    savedCovers[currentEditingId] = {type:'image', value:uploadedImage};
-  } else if(selectedPreset){
-    savedCovers[currentEditingId] = {type:'preset', value:selectedPreset};
-  }
-
-  localStorage.setItem('courseCovers', JSON.stringify(savedCovers));
-  closeModal();
-
-  // Re-render todos os rows
-  renderRow('row-continue', courses.continue, {showProgress:true});
-  renderRow('row-trending', courses.trending);
-  renderRow('row-new', courses.new);
-}
-
-function closeModal(){
-  document.getElementById('coverModal').classList.remove('open');
-  currentEditingId = null;
-  document.getElementById('fileUpload').value = '';
-}
-
-// Edit mode
-function toggleEditMode(){
-  document.body.classList.toggle('edit-mode');
-  const isEditing = document.body.classList.contains('edit-mode');
-  document.getElementById('editIcon').textContent = isEditing ? '✓' : '✏️';
-  document.getElementById('editLabel').textContent = isEditing ? 'Sair do modo edição' : 'Editar capas';
-}
-
-// Helpers
-function openCourse(id){console.log('Abrir curso',id)}
-function playCourse(id){console.log('Play',id)}
-function addToList(id){console.log('Add',id)}
-function likeCourse(id){console.log('Like',id)}
+// Distribuir cursos em 2 rows e duplicar para loop infinito
+const rowA = catalog.slice(0,6);
+const rowB = catalog.slice(6,12);
+document.getElementById('marqueeA').innerHTML = (rowA.map(posterHTML).join('')).repeat(2);
+document.getElementById('marqueeB').innerHTML = (rowB.map(posterHTML).join('')).repeat(2);
 
 // Header scroll
 window.addEventListener('scroll',()=>{
