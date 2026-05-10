@@ -148,9 +148,7 @@ body.edit-mode .poster .action-btn.edit{display:flex !important}
     <nav class="nav-links">
       <a href="#" class="active">Início</a>
       <a href="#">Cursos</a>
-      <a href="#">Trilhas</a>
       <a href="#">Minha Lista</a>
-      <a href="#">Certificados</a>
     </nav>
   </div>
   <div class="header-right">
@@ -164,20 +162,13 @@ body.edit-mode .poster .action-btn.edit{display:flex !important}
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
-    <div class="hero-badge">⚡ Novo lançamento</div>
     <h1 class="hero-title">Direito<br>Tributário 4.0</h1>
-    <div class="hero-meta">
-      <span class="match">98% compatível</span>
-      <span class="year">2026</span>
-      <span class="tag">AVANÇADO</span>
-      <span class="year">32h • 10 módulos</span>
-    </div>
     <p class="hero-desc">
-      Domine o planejamento tributário moderno com casos reais, jurisprudência atualizada do CARF e estratégias de grandes escritórios.
+      Planejamento tributário moderno com casos reais e jurisprudência atualizada do CARF.
     </p>
     <div class="hero-buttons">
-      <button class="btn btn-play">▶ Assistir agora</button>
-      <button class="btn btn-info">ⓘ Mais informações</button>
+      <button class="btn btn-play">▶ Assistir</button>
+      <button class="btn btn-info">ⓘ Detalhes</button>
     </div>
   </div>
 </section>
@@ -193,20 +184,14 @@ body.edit-mode .poster .action-btn.edit{display:flex !important}
 
   <!-- Trending -->
   <div class="row">
-    <h2 class="row-title">🔥 Em alta esta semana</h2>
+    <h2 class="row-title">Em alta</h2>
     <div class="row-scroller" id="row-trending"></div>
   </div>
 
   <!-- New Releases -->
   <div class="row">
-    <h2 class="row-title">✨ Novos lançamentos</h2>
+    <h2 class="row-title">Novos lançamentos</h2>
     <div class="row-scroller" id="row-new"></div>
-  </div>
-
-  <!-- Categorias -->
-  <div class="row">
-    <h2 class="row-title">📚 Por categoria</h2>
-    <div class="row-scroller" id="row-categorias"></div>
   </div>
 
 </div>
@@ -249,29 +234,17 @@ const courses = {
     {id:3,title:'Constitucional na Prática',cover:'cover-constitucional',icon:'🏛️',meta:'Módulo 9 de 11',progress:80}
   ],
   trending:[
-    {id:4,title:'Direito Civil Avançado',cover:'cover-civil',icon:'⚖️',match:98,duration:'40h',tag:'POPULAR'},
-    {id:5,title:'Processo Civil Moderno',cover:'cover-empresarial',icon:'📘',match:95,duration:'28h'},
-    {id:6,title:'Tributário Estratégico',cover:'cover-tributario',icon:'🏛️',match:92,duration:'32h',tag:'HOT'},
-    {id:7,title:'Empresarial para Sócios',cover:'cover-empresarial',icon:'💼',match:89,duration:'24h'},
-    {id:8,title:'Penal Econômico',cover:'cover-penal',icon:'🔨',match:87,duration:'36h'},
-    {id:9,title:'Família e Sucessões',cover:'cover-familia',icon:'👥',match:94,duration:'22h'},
-    {id:10,title:'LGPD e Direito Digital',cover:'cover-digital',icon:'🌐',match:91,duration:'18h'}
+    {id:4,title:'Direito Civil Avançado',cover:'cover-civil',icon:'⚖️',duration:'40h'},
+    {id:5,title:'Processo Civil Moderno',cover:'cover-empresarial',icon:'📘',duration:'28h'},
+    {id:6,title:'Tributário Estratégico',cover:'cover-tributario',icon:'🏛️',duration:'32h'},
+    {id:7,title:'Empresarial para Sócios',cover:'cover-empresarial',icon:'💼',duration:'24h'},
+    {id:9,title:'Família e Sucessões',cover:'cover-familia',icon:'👥',duration:'22h'}
   ],
   new:[
     {id:11,title:'IA no Direito',cover:'cover-tributario',icon:'🤖',duration:'16h',tag:'NEW'},
     {id:12,title:'Advocacia 4.0',cover:'cover-constitucional',icon:'⚡',duration:'20h',tag:'NEW'},
     {id:13,title:'Direito Médico',cover:'cover-medico',icon:'🏥',duration:'26h',tag:'NEW'},
-    {id:14,title:'Imobiliário Moderno',cover:'cover-imobiliario',icon:'🏢',duration:'30h',tag:'NEW'},
-    {id:15,title:'OAB Premium',cover:'cover-civil',icon:'🎓',duration:'60h',tag:'NEW'}
-  ],
-  categorias:[
-    {id:16,title:'Direito Civil',cover:'cover-civil',icon:'⚖️',meta:'12 cursos'},
-    {id:17,title:'Tributário',cover:'cover-tributario',icon:'🏛️',meta:'8 cursos'},
-    {id:18,title:'Trabalhista',cover:'cover-trabalhista',icon:'📜',meta:'15 cursos'},
-    {id:19,title:'Empresarial',cover:'cover-empresarial',icon:'💼',meta:'10 cursos'},
-    {id:20,title:'Penal',cover:'cover-penal',icon:'🔨',meta:'7 cursos'},
-    {id:21,title:'Família',cover:'cover-familia',icon:'👥',meta:'9 cursos'},
-    {id:22,title:'Digital/LGPD',cover:'cover-digital',icon:'🌐',meta:'6 cursos'}
+    {id:14,title:'Imobiliário Moderno',cover:'cover-imobiliario',icon:'🏢',duration:'30h',tag:'NEW'}
   ]
 };
 
@@ -374,7 +347,6 @@ function renderRow(rowId, courses, options = {}){
 renderRow('row-continue', courses.continue, {showProgress:true});
 renderRow('row-trending', courses.trending);
 renderRow('row-new', courses.new);
-renderRow('row-categorias', courses.categorias);
 
 // Modal de edição de capa
 let currentEditingId = null;
@@ -428,7 +400,6 @@ function saveCover(){
   renderRow('row-continue', courses.continue, {showProgress:true});
   renderRow('row-trending', courses.trending);
   renderRow('row-new', courses.new);
-  renderRow('row-categorias', courses.categorias);
 }
 
 function closeModal(){
