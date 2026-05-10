@@ -1,227 +1,315 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academia Jurídica - Plataforma de Cursos</title>
-    <link rel="stylesheet" href="styles-modern.css">
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+<meta charset="UTF-8">
+<title>Preview Netflix Style - Academia Jurídica</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hidden}
+::-webkit-scrollbar{height:6px;width:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.2);border-radius:3px}
+
+/* Header */
+.header{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 48px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(180deg,rgba(0,0,0,0.9) 0%,transparent 100%);transition:background 0.3s}
+.header.scrolled{background:#0a0a0a}
+.logo{font-size:28px;font-weight:900;color:#e50914;letter-spacing:-1px}
+.nav-links{display:flex;gap:24px;align-items:center;margin-left:48px;flex:1}
+.nav-links a{color:#e5e5e5;text-decoration:none;font-size:14px;font-weight:500;transition:color 0.2s}
+.nav-links a:hover{color:#b3b3b3}
+.nav-links a.active{font-weight:700;color:#fff}
+.header-right{display:flex;gap:20px;align-items:center}
+.icon-btn{background:none;border:none;color:#fff;cursor:pointer;font-size:20px}
+.avatar{width:32px;height:32px;border-radius:4px;background:linear-gradient(135deg,#e50914,#b20710);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+
+/* Hero Banner */
+.hero{position:relative;height:85vh;min-height:600px;display:flex;align-items:flex-end;padding:0 48px 80px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:
+  linear-gradient(90deg,#0a0a0a 0%,rgba(10,10,10,0.7) 40%,transparent 70%),
+  linear-gradient(0deg,#0a0a0a 0%,transparent 50%),
+  radial-gradient(ellipse at top right,#2d1b4e,#0a0a0a);
+  z-index:0}
+.hero-bg::before{content:'';position:absolute;inset:0;background-image:
+  radial-gradient(circle at 70% 40%,rgba(229,9,20,0.2) 0%,transparent 50%),
+  radial-gradient(circle at 80% 70%,rgba(139,92,246,0.15) 0%,transparent 50%)}
+
+.hero-content{position:relative;z-index:1;max-width:600px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:4px 12px;background:rgba(229,9,20,0.15);border:1px solid rgba(229,9,20,0.3);border-radius:4px;font-size:12px;font-weight:700;color:#e50914;text-transform:uppercase;letter-spacing:2px;margin-bottom:16px}
+.hero-title{font-size:72px;font-weight:900;line-height:1;letter-spacing:-3px;margin-bottom:16px;text-shadow:2px 2px 20px rgba(0,0,0,0.5)}
+.hero-meta{display:flex;gap:16px;align-items:center;margin-bottom:20px;font-size:14px}
+.hero-meta .match{color:#46d369;font-weight:700}
+.hero-meta .year{color:#b3b3b3}
+.hero-meta .tag{padding:2px 8px;border:1px solid rgba(255,255,255,0.4);font-size:11px;font-weight:600}
+.hero-desc{font-size:18px;line-height:1.5;color:#e5e5e5;margin-bottom:24px;max-width:500px;text-shadow:1px 1px 4px rgba(0,0,0,0.5)}
+.hero-buttons{display:flex;gap:12px}
+.btn{padding:12px 24px;border:none;border-radius:4px;font-size:16px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all 0.2s}
+.btn-play{background:#fff;color:#000}
+.btn-play:hover{background:rgba(255,255,255,0.75)}
+.btn-info{background:rgba(109,109,110,0.7);color:#fff;backdrop-filter:blur(10px)}
+.btn-info:hover{background:rgba(109,109,110,0.4)}
+
+/* Rows */
+.rows{position:relative;z-index:2;margin-top:-120px;padding-bottom:60px}
+.row{margin-bottom:48px;padding:0 0 0 48px}
+.row-title{font-size:22px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.row-title::after{content:'Ver tudo ›';font-size:13px;color:#54b9c5;font-weight:600;opacity:0;transition:opacity 0.3s;margin-left:12px}
+.row:hover .row-title::after{opacity:1}
+
+.row-scroller{display:flex;gap:8px;overflow-x:auto;padding:8px 48px 16px 0;scroll-snap-type:x mandatory}
+.card{flex:0 0 280px;height:160px;border-radius:4px;overflow:hidden;cursor:pointer;position:relative;scroll-snap-align:start;transition:transform 0.3s,box-shadow 0.3s;background-size:cover;background-position:center}
+.card:hover{transform:scale(1.08);z-index:10;box-shadow:0 20px 40px rgba(0,0,0,0.8)}
+
+/* Card colors - gradientes únicos por card */
+.card-1{background:linear-gradient(135deg,#e50914 0%,#7f0a11 100%)}
+.card-2{background:linear-gradient(135deg,#1e3a8a 0%,#1e1b4b 100%)}
+.card-3{background:linear-gradient(135deg,#8b5cf6 0%,#4c1d95 100%)}
+.card-4{background:linear-gradient(135deg,#059669 0%,#064e3b 100%)}
+.card-5{background:linear-gradient(135deg,#d97706 0%,#78350f 100%)}
+.card-6{background:linear-gradient(135deg,#be185d 0%,#831843 100%)}
+.card-7{background:linear-gradient(135deg,#0891b2 0%,#164e63 100%)}
+.card-8{background:linear-gradient(135deg,#7c3aed 0%,#4c1d95 100%)}
+
+.card-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,0.9) 0%,transparent 60%);padding:16px;display:flex;flex-direction:column;justify-content:flex-end;opacity:0;transition:opacity 0.3s}
+.card:hover .card-overlay{opacity:1}
+.card-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:48px;opacity:0.3}
+.card-title{font-size:14px;font-weight:700;margin-bottom:4px}
+.card-meta{display:flex;gap:8px;font-size:11px;color:#b3b3b3;margin-bottom:8px}
+.card-match{color:#46d369;font-weight:700}
+.card-actions{display:flex;gap:6px}
+.card-btn{width:28px;height:28px;border-radius:50%;background:rgba(0,0,0,0.7);border:1px solid #fff;color:#fff;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center}
+.card-btn.play{background:#fff;color:#000}
+
+/* Progress card */
+.card.continue{background:linear-gradient(135deg,#1f2937 0%,#111827 100%)}
+.card.continue .progress{position:absolute;bottom:0;left:0;right:0;height:3px;background:rgba(255,255,255,0.2)}
+.card.continue .progress-fill{height:100%;background:#e50914}
+.card.continue .card-overlay{opacity:1;background:linear-gradient(0deg,rgba(0,0,0,0.9) 0%,transparent 40%)}
+
+/* Top 10 style */
+.top-card{flex:0 0 340px;display:flex;align-items:center;padding-left:60px;position:relative}
+.top-card .rank{position:absolute;left:-20px;bottom:-20px;font-size:240px;font-weight:900;color:#0a0a0a;-webkit-text-stroke:3px #b3b3b3;line-height:0.8;font-family:Inter}
+.top-card .card{flex:0 0 200px;height:280px}
+
+@media(max-width:768px){
+  .header{padding:12px 16px}
+  .hero{padding:0 16px 40px}
+  .hero-title{font-size:40px;letter-spacing:-1px}
+  .hero-desc{font-size:14px}
+  .rows,.row{padding-left:16px}
+  .nav-links{display:none}
+}
+</style>
 </head>
 <body>
-    <!-- Navigation -->
-    <header class="header">
-        <div class="header-content">
-            <a href="index.html" class="logo">
-                <span class="logo-icon">📚</span>
-                <span>Academia Jurídica</span>
-            </a>
-            <nav class="nav-links">
-                <a href="#cursos" class="nav-link">Cursos</a>
-                <a href="#progresso" class="nav-link">Meu Progresso</a>
-                <a href="#certificados" class="nav-link">Certificados</a>
-            </nav>
-            <div class="user-menu">
-                <div id="userMenu" style="display: none;">
-                    <div class="user-avatar" id="userAvatar"></div>
-                    <button class="btn btn-ghost" id="logoutBtn">
-                        <i data-lucide="log-out"></i>
-                        Sair
-                    </button>
-                </div>
-                <button class="btn btn-primary" id="loginBtn">
-                    <i data-lucide="log-in"></i>
-                    Entrar
-                </button>
-            </div>
+
+<header class="header" id="header">
+  <div style="display:flex;align-items:center;flex:1">
+    <div class="logo">ACADEMIA JURÍDICA</div>
+    <nav class="nav-links">
+      <a href="#" class="active">Início</a>
+      <a href="#">Cursos</a>
+      <a href="#">Trilhas</a>
+      <a href="#">Minha Lista</a>
+      <a href="#">Certificados</a>
+    </nav>
+  </div>
+  <div class="header-right">
+    <button class="icon-btn">🔍</button>
+    <button class="icon-btn">🔔</button>
+    <div class="avatar">A</div>
+  </div>
+</header>
+
+<!-- Hero Banner -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">⚡ Novo lançamento</div>
+    <h1 class="hero-title">Direito<br>Tributário 4.0</h1>
+    <div class="hero-meta">
+      <span class="match">98% compatível</span>
+      <span class="year">2026</span>
+      <span class="tag">AVANÇADO</span>
+      <span class="year">32h • 10 módulos</span>
+    </div>
+    <p class="hero-desc">
+      Domine o planejamento tributário moderno com casos reais, jurisprudência atualizada do CARF e estratégias que advogados de grandes escritórios usam hoje.
+    </p>
+    <div class="hero-buttons">
+      <button class="btn btn-play">▶ Assistir agora</button>
+      <button class="btn btn-info">ⓘ Mais informações</button>
+    </div>
+  </div>
+</section>
+
+<!-- Rows -->
+<div class="rows">
+
+  <!-- Continue Watching -->
+  <div class="row">
+    <h2 class="row-title">Continue assistindo</h2>
+    <div class="row-scroller">
+      <div class="card continue">
+        <div class="card-icon">⚖️</div>
+        <div class="progress"><div class="progress-fill" style="width:65%"></div></div>
+        <div class="card-overlay">
+          <div class="card-title">Direito Civil Avançado</div>
+          <div class="card-meta"><span>Módulo 8 de 12</span></div>
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%); padding: 120px 20px 80px; text-align: center; position: relative; z-index: 1; overflow: hidden;">
-        <!-- Animated gradient orbs -->
-        <div style="position: absolute; top: -50%; left: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(99, 102, 241, 0.3) 0%, transparent 70%); border-radius: 50%; filter: blur(60px); animation: float 20s ease-in-out infinite;"></div>
-        <div style="position: absolute; bottom: -50%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%); border-radius: 50%; filter: blur(60px); animation: float 25s ease-in-out infinite reverse;"></div>
-
-        <div class="hero-content" style="max-width: 900px; margin: 0 auto; position: relative; z-index: 2;">
-            <!-- Badge -->
-            <div style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 999px; margin-bottom: 24px; backdrop-filter: blur(8px);">
-                <span style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></span>
-                <span style="font-size: 14px; font-weight: 600; color: var(--text-secondary);">+500 advogados já transformaram suas carreiras</span>
-            </div>
-
-            <h1 class="hero-title" style="font-size: 56px; font-weight: 800; color: white; margin-bottom: 24px; line-height: 1.1; letter-spacing: -0.02em;">
-                Domine o Direito com
-                <span style="background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Excelência</span>
-            </h1>
-            <p class="hero-subtitle" style="font-size: 20px; color: var(--text-secondary); margin-bottom: 48px; max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.6;">
-                Cursos especializados com metodologia prática, certificação reconhecida e suporte de especialistas para impulsionar sua carreira jurídica
-            </p>
-
-            <!-- Search Bar -->
-            <div class="search-container" style="max-width: 650px; margin: 0 auto 32px; display: flex; gap: 8px; background: var(--bg-card); padding: 8px; border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); border: 1px solid var(--border-color);">
-                <i data-lucide="search" style="margin: auto 12px; color: var(--text-muted);"></i>
-                <input type="text" id="searchInput" class="input" placeholder="Buscar cursos de Direito Civil, Trabalhista, Empresarial..." style="border: none; flex: 1; padding: 12px 0; background: transparent;">
-                <button class="btn btn-primary" style="border-radius: 12px; padding: 12px 24px;">
-                    <i data-lucide="search"></i>
-                    Buscar
-                </button>
-            </div>
-
-            <!-- Stats -->
-            <div style="display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; margin-top: 48px;">
-                <div style="text-align: center;">
-                    <div style="font-size: 32px; font-weight: 800; color: white; margin-bottom: 4px;">50+</div>
-                    <div style="font-size: 14px; color: var(--text-muted);">Cursos Disponíveis</div>
-                </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 32px; font-weight: 800; color: white; margin-bottom: 4px;">500+</div>
-                    <div style="font-size: 14px; color: var(--text-muted);">Alunos Ativos</div>
-                </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 32px; font-weight: 800; color: white; margin-bottom: 4px;">4.9★</div>
-                    <div style="font-size: 14px; color: var(--text-muted);">Avaliação Média</div>
-                </div>
-            </div>
+      </div>
+      <div class="card continue">
+        <div class="card-icon">📜</div>
+        <div class="progress"><div class="progress-fill" style="width:30%"></div></div>
+        <div class="card-overlay">
+          <div class="card-title">Trabalhista 4.0</div>
+          <div class="card-meta"><span>Módulo 3 de 8</span></div>
         </div>
-    </section>
-
-    <style>
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(30px, -30px) rotate(120deg); }
-            66% { transform: translate(-20px, 20px) rotate(240deg); }
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
-        }
-    </style>
-
-    <!-- Continue Assistindo -->
-    <section class="section" style="padding: 80px 20px; position: relative; z-index: 1;">
-        <div class="container" style="max-width: 1400px; margin: 0 auto;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
-                <div>
-                    <h2 style="font-size: 36px; font-weight: 800; color: white; margin: 0 0 8px 0; letter-spacing: -0.02em;">Continue de onde parou</h2>
-                    <p style="color: var(--text-secondary); font-size: 16px; margin: 0;">Retome seus estudos e complete sua jornada</p>
-                </div>
-            </div>
-            <div id="continueLoading" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 28px;">
-                <div class="card skeleton skeleton-card"></div>
-                <div class="card skeleton skeleton-card"></div>
-            </div>
-            <div id="continueGrid" style="display: none; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 28px;"></div>
+      </div>
+      <div class="card continue">
+        <div class="card-icon">🏛️</div>
+        <div class="progress"><div class="progress-fill" style="width:80%"></div></div>
+        <div class="card-overlay">
+          <div class="card-title">Constitucional na Prática</div>
+          <div class="card-meta"><span>Módulo 9 de 11</span></div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
 
-    <!-- Categorias -->
-    <section class="section" style="padding: 80px 20px; position: relative; z-index: 1;">
-        <div class="container" style="max-width: 1400px; margin: 0 auto;">
-            <div style="text-align: center; margin-bottom: 56px;">
-                <h2 style="font-size: 40px; font-weight: 800; color: white; margin-bottom: 16px; letter-spacing: -0.02em;">Explore por Categoria</h2>
-                <p style="font-size: 18px; color: var(--text-secondary); max-width: 600px; margin: 0 auto;">Encontre o curso perfeito para sua especialização jurídica</p>
-            </div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px;">
-                <div class="card card-interactive" style="text-align: center; padding: 40px 24px; position: relative; overflow: hidden;">
-                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #6366f1, #8b5cf6);"></div>
-                    <div style="width: 64px; height: 64px; margin: 0 auto 20px; background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2)); border-radius: 16px; display: flex; align-items: center; justify-content: center;">
-                        <i data-lucide="scale" style="width: 32px; height: 32px; color: var(--primary-color);"></i>
-                    </div>
-                    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px; color: white;">Direito Civil</h3>
-                    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 12px;">Contratos, Família, Sucessões</p>
-                    <div style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: rgba(99, 102, 241, 0.1); border-radius: 999px; font-size: 13px; font-weight: 600; color: var(--primary-color);">
-                        <i data-lucide="book-open" style="width: 14px; height: 14px;"></i>
-                        12 cursos
-                    </div>
-                </div>
-                <div class="card card-interactive" style="text-align: center; padding: 40px 24px; position: relative; overflow: hidden;">
-                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #8b5cf6, #ec4899);"></div>
-                    <div style="width: 64px; height: 64px; margin: 0 auto 20px; background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2)); border-radius: 16px; display: flex; align-items: center; justify-content: center;">
-                        <i data-lucide="briefcase" style="width: 32px; height: 32px; color: var(--secondary-color);"></i>
-                    </div>
-                    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px; color: white;">Direito Empresarial</h3>
-                    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 12px;">Societário, Falências, M&A</p>
-                    <div style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: rgba(139, 92, 246, 0.1); border-radius: 999px; font-size: 13px; font-weight: 600; color: var(--secondary-color);">
-                        <i data-lucide="book-open" style="width: 14px; height: 14px;"></i>
-                        8 cursos
-                    </div>
-                </div>
-                <div class="card card-interactive" style="text-align: center; padding: 40px 24px; position: relative; overflow: hidden;">
-                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #10b981, #06b6d4);"></div>
-                    <div style="width: 64px; height: 64px; margin: 0 auto 20px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(6, 182, 212, 0.2)); border-radius: 16px; display: flex; align-items: center; justify-content: center;">
-                        <i data-lucide="users" style="width: 32px; height: 32px; color: var(--success-color);"></i>
-                    </div>
-                    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px; color: white;">Direito Trabalhista</h3>
-                    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 12px;">CLT, Processos, Reforma</p>
-                    <div style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: rgba(16, 185, 129, 0.1); border-radius: 999px; font-size: 13px; font-weight: 600; color: var(--success-color);">
-                        <i data-lucide="book-open" style="width: 14px; height: 14px;"></i>
-                        15 cursos
-                    </div>
-                </div>
-                <div class="card card-interactive" style="text-align: center; padding: 40px 24px; position: relative; overflow: hidden;">
-                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #f59e0b, #ef4444);"></div>
-                    <div style="width: 64px; height: 64px; margin: 0 auto 20px; background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(239, 68, 68, 0.2)); border-radius: 16px; display: flex; align-items: center; justify-content: center;">
-                        <i data-lucide="landmark" style="width: 32px; height: 32px; color: var(--warning-color);"></i>
-                    </div>
-                    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px; color: white;">Direito Constitucional</h3>
-                    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 12px;">Direitos Fundamentais, STF</p>
-                    <div style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: rgba(245, 158, 11, 0.1); border-radius: 999px; font-size: 13px; font-weight: 600; color: var(--warning-color);">
-                        <i data-lucide="book-open" style="width: 14px; height: 14px;"></i>
-                        6 cursos
-                    </div>
-                </div>
-            </div>
+  <!-- Trending -->
+  <div class="row">
+    <h2 class="row-title">🔥 Em alta esta semana</h2>
+    <div class="row-scroller">
+      <div class="card card-1">
+        <div class="card-icon">⚖️</div>
+        <div class="card-overlay">
+          <div class="card-title">Direito Civil Avançado</div>
+          <div class="card-meta"><span class="card-match">98% match</span><span>40h</span></div>
+          <div class="card-actions">
+            <button class="card-btn play">▶</button>
+            <button class="card-btn">+</button>
+            <button class="card-btn">👍</button>
+          </div>
         </div>
-    </section>
-
-    <!-- Todos os Cursos -->
-    <section class="section" style="padding: 80px 20px 120px; position: relative; z-index: 1;">
-        <div class="container" style="max-width: 1400px; margin: 0 auto;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; flex-wrap: wrap; gap: 20px;">
-                <div>
-                    <h2 style="font-size: 36px; font-weight: 800; color: white; margin: 0 0 8px 0; letter-spacing: -0.02em;">Todos os Cursos</h2>
-                    <p style="color: var(--text-secondary); font-size: 16px; margin: 0;">Explore nossa biblioteca completa de conhecimento jurídico</p>
-                </div>
-                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                    <button class="btn btn-secondary btn-sm">
-                        <i data-lucide="filter"></i>
-                        Filtrar
-                    </button>
-                    <button class="btn btn-secondary btn-sm">
-                        <i data-lucide="arrow-up-down"></i>
-                        Ordenar
-                    </button>
-                </div>
-            </div>
-            <div id="coursesLoading" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 28px;">
-                <div class="card skeleton skeleton-card"></div>
-                <div class="card skeleton skeleton-card"></div>
-                <div class="card skeleton skeleton-card"></div>
-                <div class="card skeleton skeleton-card"></div>
-            </div>
-            <div id="coursesGrid" style="display: none; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 28px;"></div>
+      </div>
+      <div class="card card-2">
+        <div class="card-icon">📘</div>
+        <div class="card-overlay">
+          <div class="card-title">Processo Civil Moderno</div>
+          <div class="card-meta"><span class="card-match">95% match</span><span>28h</span></div>
+          <div class="card-actions">
+            <button class="card-btn play">▶</button>
+            <button class="card-btn">+</button>
+          </div>
         </div>
-    </section>
-
-    <footer style="background: rgba(0,0,0,0.2); padding: 40px 20px; text-align: center; color: rgba(255,255,255,0.7); position: relative; z-index: 1;">
-        <div style="max-width: 1200px; margin: 0 auto;">
-            <p style="margin-bottom: 16px;">© 2024 Academia Jurídica. Todos os direitos reservados.</p>
-            <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;">
-                <a href="#" style="color: rgba(255,255,255,0.7); text-decoration: none;">Termos de Uso</a>
-                <a href="#" style="color: rgba(255,255,255,0.7); text-decoration: none;">Política de Privacidade</a>
-                <a href="#" style="color: rgba(255,255,255,0.7); text-decoration: none;">Contato</a>
-            </div>
+      </div>
+      <div class="card card-3">
+        <div class="card-icon">🏛️</div>
+        <div class="card-overlay">
+          <div class="card-title">Tributário Estratégico</div>
+          <div class="card-meta"><span class="card-match">92% match</span><span>32h</span></div>
+          <div class="card-actions">
+            <button class="card-btn play">▶</button>
+            <button class="card-btn">+</button>
+          </div>
         </div>
-    </footer>
+      </div>
+      <div class="card card-4">
+        <div class="card-icon">💼</div>
+        <div class="card-overlay">
+          <div class="card-title">Empresarial para Sócios</div>
+          <div class="card-meta"><span class="card-match">89% match</span><span>24h</span></div>
+          <div class="card-actions">
+            <button class="card-btn play">▶</button>
+            <button class="card-btn">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="card card-5">
+        <div class="card-icon">🔨</div>
+        <div class="card-overlay">
+          <div class="card-title">Penal Econômico</div>
+          <div class="card-meta"><span class="card-match">87% match</span><span>36h</span></div>
+          <div class="card-actions">
+            <button class="card-btn play">▶</button>
+            <button class="card-btn">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="card card-6">
+        <div class="card-icon">👥</div>
+        <div class="card-overlay">
+          <div class="card-title">Família e Sucessões</div>
+          <div class="card-meta"><span class="card-match">94% match</span><span>22h</span></div>
+          <div class="card-actions">
+            <button class="card-btn play">▶</button>
+            <button class="card-btn">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="card card-7">
+        <div class="card-icon">🌐</div>
+        <div class="card-overlay">
+          <div class="card-title">LGPD e Direito Digital</div>
+          <div class="card-meta"><span class="card-match">91% match</span><span>18h</span></div>
+          <div class="card-actions">
+            <button class="card-btn play">▶</button>
+            <button class="card-btn">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <script type="module" src="app-modern.js"></script>
-    <script>
-        lucide.createIcons();
-        const header = document.querySelector('.header');
-        window.addEventListener('scroll', () => {
-            header.classList.toggle('scrolled', window.scrollY > 50);
-        });
-    </script>
+  <!-- New Releases -->
+  <div class="row">
+    <h2 class="row-title">✨ Novos lançamentos</h2>
+    <div class="row-scroller">
+      <div class="card card-8">
+        <div class="card-icon">📊</div>
+        <div class="card-overlay">
+          <div class="card-title">IA no Direito</div>
+          <div class="card-meta"><span style="color:#e50914;font-weight:700">NOVO</span><span>16h</span></div>
+        </div>
+      </div>
+      <div class="card card-3">
+        <div class="card-icon">⚡</div>
+        <div class="card-overlay">
+          <div class="card-title">Advocacia 4.0</div>
+          <div class="card-meta"><span style="color:#e50914;font-weight:700">NOVO</span><span>20h</span></div>
+        </div>
+      </div>
+      <div class="card card-5">
+        <div class="card-icon">🏥</div>
+        <div class="card-overlay">
+          <div class="card-title">Direito Médico</div>
+          <div class="card-meta"><span style="color:#e50914;font-weight:700">NOVO</span><span>26h</span></div>
+        </div>
+      </div>
+      <div class="card card-2">
+        <div class="card-icon">🏢</div>
+        <div class="card-overlay">
+          <div class="card-title">Imobiliário Moderno</div>
+          <div class="card-meta"><span style="color:#e50914;font-weight:700">NOVO</span><span>30h</span></div>
+        </div>
+      </div>
+      <div class="card card-6">
+        <div class="card-icon">🎓</div>
+        <div class="card-overlay">
+          <div class="card-title">OAB Premium</div>
+          <div class="card-meta"><span style="color:#e50914;font-weight:700">NOVO</span><span>60h</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+window.addEventListener('scroll',()=>{
+  document.getElementById('header').classList.toggle('scrolled',window.scrollY>50);
+});
+</script>
 </body>
 </html>
