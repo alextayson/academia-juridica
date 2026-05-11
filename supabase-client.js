@@ -1,10 +1,41 @@
 // Supabase Client Configuration
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 
-const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+const cfg = (typeof window !== 'undefined' && window.APP_CONFIG) || {};
+const SUPABASE_URL = cfg.SUPABASE_URL || 'YOUR_SUPABASE_URL';
+const SUPABASE_ANON_KEY = cfg.SUPABASE_ANON_KEY || 'YOUR_SUPABASE_ANON_KEY';
 
-export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+export const isConfigured = !SUPABASE_URL.startsWith('YOUR_') && !SUPABASE_ANON_KEY.startsWith('YOUR_');
+
+if (!isConfigured && typeof window !== 'undefined') {
+  console.warn('[academia-juridica] Supabase não configurado. Edite config.js com suas credenciais.');
+}
+
+// Stub gracioso: quando não há credenciais, retorna um cliente que não derruba a página
+function makeStub() {
+  const noop = async () => ({ data: null, error: { message: 'Supabase não configurado. Edite config.js.' } });
+  const chain = new Proxy(function () {}, {
+    get: () => chain,
+    apply: () => Promise.resolve({ data: null, error: { message: 'Supabase não configurado.' } })
+  });
+  return {
+    auth: {
+      signUp: noop, signInWithPassword: noop, signInWithOAuth: noop,
+      signOut: async () => ({ error: null }),
+      getUser: async () => ({ data: { user: null }, error: null }),
+      getSession: async () => ({ data: { session: null }, error: null }),
+      onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } }),
+      resetPasswordForEmail: noop, updateUser: noop
+    },
+    from: () => chain,
+    storage: { from: () => ({ upload: noop, download: noop, getPublicUrl: () => ({ data: { publicUrl: '' } }), remove: noop, list: noop }) },
+    rpc: noop
+  };
+}
+
+export const supabase = isConfigured
+  ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+  : makeStub();
 
 // Auth helpers
 export const auth = {
